@@ -1,0 +1,2 @@
+source $HOME/.config/neomutt/config/bindings.mutt
+source $HOME/.config/neomutt/config/settings.mutt
