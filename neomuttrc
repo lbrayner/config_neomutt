@@ -1,2 +1,13 @@
+# https://github.com/wincent/wincent
+# https://github.com/LukeSmithxyz/mutt-wizard
+
 source $HOME/.config/neomutt/config/bindings.mutt
 source $HOME/.config/neomutt/config/settings.mutt
+
+source $HOME/.config/neomutt/neomuttrc.local
+
+set sidebar_visible
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set mail_check_stats
+
+set header_cache=$HOME/.config/neomutt/.mail/mutt_cache/

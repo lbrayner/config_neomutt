@@ -1,3 +1,5 @@
+# https://github.com/wincent/wincent
+
 bind attach <Esc>e noop # Normally <resend-message>.
 # bind attach <enter> view-mailcap # Normally <view-attach>.
 # bind attach <return> view-mailcap
@@ -89,4 +91,5 @@ bind pager j next-line
 bind pager k previous-line
 bind pager o noop # Normally <sort-mailbox>.
 bind pager u exit
+
 # vim:ft=neomuttrc
