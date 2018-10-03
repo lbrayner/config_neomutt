@@ -11,3 +11,5 @@ set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
 set mail_check_stats
 
 set header_cache=$HOME/.config/neomutt/.mail/mutt_cache/
+set edit_headers=yes
+set mailcap_path=$HOME/.config/neomutt/mailcap
