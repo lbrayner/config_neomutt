@@ -2,6 +2,7 @@
 # https://github.com/LukeSmithxyz/mutt-wizard
 
 source $HOME/.config/neomutt/config/bindings.mutt
+source $HOME/.config/neomutt/config/macros.mutt
 source $HOME/.config/neomutt/config/settings.mutt
 
 source $HOME/.config/neomutt/neomuttrc.local
@@ -13,3 +14,4 @@ set mail_check_stats
 set header_cache=$HOME/.config/neomutt/.mail/mutt_cache/
 set edit_headers=yes
 set mailcap_path=$HOME/.config/neomutt/mailcap
+set wait_key=no
