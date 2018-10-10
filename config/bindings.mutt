@@ -8,6 +8,8 @@ bind attach f noop # Normally <forward-message>.
 bind attach i noop # Normally <ispell>.
 bind attach m noop # Normally <view-mailcap>, which we have bound to <return>.
 bind attach r noop # Normally <reply>.
+bind attach \\ noop
+bind attach <esc>r reply
 bind attach u exit
 bind attach v noop # Normally <collapse-parts>, we use <tab> instead.
 bind attach,compose,index,pager | noop # Normally <pipe-entry> or <pipe-message>.
