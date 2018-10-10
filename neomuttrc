@@ -7,13 +7,30 @@ source $HOME/.config/neomutt/config/settings.mutt
 
 source $HOME/.config/neomutt/neomuttrc.local
 
+# The sidebar shows a list of all your mailboxes. 
 set sidebar_visible
 set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+
+# When set, mutt will periodically calculate message statistics of a mailbox
+# while polling for new mail. It will check for unread, flagged, and total
+# message counts.
 set mail_check_stats
 
+# When set, the message you are forwarding will be attached as a separate
+# message/rfc822 MIME part instead of included in the main body of the message. 
+set mime_forward
+
+# Header caching can greatly improve speed when opening POP, IMAP MH or Maildir
+# folders
 set header_cache=$HOME/.config/neomutt/.mail/mutt_cache/
+
+# This variable specifies which files to consult when attempting to display
+# MIME bodies not directly supported by Mutt.
 set mailcap_path=$HOME/.config/neomutt/mailcap
 
 set edit_headers=yes
+
+# Controls whether Mutt will ask you to press a key after an external command
+# has been invoked
 set wait_key=no
 set sleep_time = 0 # be fast
