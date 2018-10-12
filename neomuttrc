@@ -1,6 +1,8 @@
 # https://github.com/wincent/wincent
 # https://github.com/LukeSmithxyz/mutt-wizard
 
+source $HOME/.config/neomutt/submodules\
+/mutt-colors-solarized/mutt-colors-solarized-dark-256.muttrc
 source $HOME/.config/neomutt/config/bindings.mutt
 source $HOME/.config/neomutt/config/macros.mutt
 source $HOME/.config/neomutt/config/settings.mutt
