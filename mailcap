@@ -1,5 +1,5 @@
 text/html;  firefox_mailcap %s >/dev/null 2>&1; description=HTML Text; test=test -n "$DISPLAY";  nametemplate=%s.html
-text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump %s; needsterminal; description=HTML Text; nametemplate=%s.html
+# text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump %s; needsterminal; description=HTML Text; nametemplate=%s.html
 text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump %s; nametemplate=%s.html; copiousoutput
 
 image/jpg; feh %s; test=test -n "$DISPLAY"
