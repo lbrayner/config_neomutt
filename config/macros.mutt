@@ -44,4 +44,12 @@ macro index U "<tag-prefix><set-flag>N" "mark as unread"
 macro pager I <clear-flag>N "mark as read"
 macro index I "<tag-prefix><clear-flag>N" "mark as read"
 
+# '/' performs a notmuch query, showing only the results
+macro index / "<enter-command>unset wait_key<enter>\
+<shell-escape>read -p 'notmuch query: ' x; echo \$x >~/.cache/mutt_terms<enter>\
+<limit>~i \"`notmuch search --output=messages $(cat ~/.cache/mutt_terms) | sed -n -E -e 's/id://g' -e '1s/.*/"&"/p' -e '2,$s/.*/| "&"/p' | tr '\r\n' ' '`\"<enter>
+
+# 'A' shows all messages again (supersedes default <alias> binding)
+macro index A "<limit>all\n" "show all messages (undo limit)"
+
 # vim:ft=muttrc

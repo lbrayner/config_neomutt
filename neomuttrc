@@ -22,6 +22,10 @@ set mail_check_stats
 # message/rfc822 MIME part instead of included in the main body of the message. 
 set mime_forward
 
+# When this variable is set, Mutt will decode RFC2047-encoded MIME parameters.
+# You want to set this variable when mutt suggests you to save attachments...
+set rfc2047_parameters=yes
+
 # Header caching can greatly improve speed when opening POP, IMAP MH or Maildir
 # folders
 set header_cache=$HOME/.config/neomutt/.mail/mutt_cache/
