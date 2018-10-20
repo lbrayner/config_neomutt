@@ -44,12 +44,16 @@ macro index U "<tag-prefix><set-flag>N" "mark as unread"
 macro pager I <clear-flag>N "mark as read"
 macro index I "<tag-prefix><clear-flag>N" "mark as read"
 
-# '/' performs a notmuch query, showing only the results
+# macro '/' performs a notmuch query, showing only the results
+# macro 'S' executes the limit command, defined in limit.mutt
 macro index / "<enter-command>unset wait_key<enter>\
-<shell-escape>read -p 'notmuch query: ' x; echo \$x >~/.cache/mutt_terms<enter>\
-<limit>~i \"`notmuch search --output=messages $(cat ~/.cache/mutt_terms) | sed -n -E -e 's/id://g' -e '1s/.*/"&"/p' -e '2,$s/.*/| "&"/p' | tr '\r\n' ' '`\"<enter>
+<shell-escape>\
+terms=\$(rlwrap -H ~/.cache/notmuch_history \
+    sh -c 'read -r -p \"notmuch: \" reply && echo $reply'); \
+test -n \"\$terms\" && printf \$terms > ~/.cache/mutt_terms<enter>\
+<enter-command>source $HOME/.config/neomutt/config/limit.mutt<enter>S"
 
-# 'A' shows all messages again (supersedes default <alias> binding)
-macro index A "<limit>all\n" "show all messages (undo limit)"
+# 'A' shows all messages again
+macro index A "<limit>all\n"
 
 # vim:ft=muttrc
