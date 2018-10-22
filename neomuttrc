@@ -28,7 +28,7 @@ set rfc2047_parameters=yes
 
 # Header caching can greatly improve speed when opening POP, IMAP MH or Maildir
 # folders
-set header_cache=$HOME/.config/neomutt/.mail/mutt_cache/
+set header_cache=$HOME/.config/neomutt/.cache/mutt_cache/
 
 # This variable specifies which files to consult when attempting to display
 # MIME bodies not directly supported by Mutt.

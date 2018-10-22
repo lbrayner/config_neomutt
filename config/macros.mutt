@@ -46,11 +46,12 @@ macro index I "<tag-prefix><clear-flag>N" "mark as read"
 
 # macro '/' performs a notmuch query, showing only the results
 # macro 'S' executes the limit command, defined in limit.mutt
-macro index / "<enter-command>unset wait_key<enter>\
+macro index / "X <enter-command>unset wait_key<enter>\
 <shell-escape>\
-terms=\$(rlwrap -H ~/.cache/notmuch_history \
+from=\"to:$(cat ~/.cache/mutt_from) \"; \
+terms=\$(rlwrap -H ~/.cache/notmuch_history -P \"\$from\" \
     sh -c 'read -r -p \"notmuch: \" reply && echo $reply'); \
-test -n \"\$terms\" && printf \$terms > ~/.cache/mutt_terms<enter>\
+test -n \"\$terms\" && printf \"\$terms\" > ~/.cache/mutt_terms<enter>\
 <enter-command>source $HOME/.config/neomutt/config/limit.mutt<enter>S"
 
 # 'A' shows all messages again

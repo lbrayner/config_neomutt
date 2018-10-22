@@ -1,8 +1,8 @@
 # performs the latest search
 macro index S \
 "<limit>`xargs -0 notmuch search --output=messages < ~/.cache/mutt_terms | \
-head -n 600 | \
-sed -n -E -e 's/id://g' -e '1s/.*/=i &/p' -e '2,$s/.*/| =i &/p' | \
+head -n 20 | \
+sed -n -E -e 's/id://g' -e '1s/.*/=i \"&\"/p' -e '2,$s/.*/| =i \"&\"/p' | \
 tr '\r\n' ' '`<enter>\
 <shell-escape>printf '' > ~/.cache/mutt_terms<enter>"
 
