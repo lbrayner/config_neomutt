@@ -2,6 +2,8 @@ text/html;  firefox_mailcap %s >/dev/null 2>&1; description=HTML Text; test=test
 # text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump %s; needsterminal; description=HTML Text; nametemplate=%s.html
 text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump %s; nametemplate=%s.html; copiousoutput
 
-image/jpg; feh %s; test=test -n "$DISPLAY"
+image/jpg; feh %s >/dev/null 2>&1; test=test -n "$DISPLAY"
 
-image/png; feh %s; test=test -n "$DISPLAY"
+image/png; feh %s >/dev/null 2>&1; test=test -n "$DISPLAY"
+
+application/pdf; mupdf %s >/dev/null 2>&1; test=test -n "$DISPLAY"
