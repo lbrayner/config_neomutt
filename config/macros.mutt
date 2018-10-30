@@ -11,10 +11,7 @@ macro compose <esc>3 "F pandoc -s --quiet -f markdown_strict -t plain \ny"
 macro compose <esc>2 "<previous-entry><tag-entry><next-entry><tag-entry><group-alternatives>"
 
 macro compose <esc>1 \
-"<pipe-entry>sed -E -e '/> -- ?$/,/> $/ s/>( |( >)+)/&    /' -e '/^-- $/q' | \
-head -n -1 | \
-pandoc --quiet --template=mail -f markdown_strict+pipe_tables -t html \
--o /tmp/neomutt-alternative<enter>\
+"<pipe-entry>mailmd2html > /tmp/neomutt-alternative<enter>\
 <attach-file>/tmp/neomutt-alternative<enter>\
 ^t<esc>b^b^b<esc><BackSpace>html<enter>"
 
