@@ -4,7 +4,7 @@ bind attach <Esc>e noop # Normally <resend-message>.
 # bind attach <enter> view-mailcap # Normally <view-attach>.
 # bind attach <return> view-mailcap
 bind attach <tab> collapse-parts # Normally "v".
-bind attach f noop # Normally <forward-message>.
+# bind attach f noop # Normally <forward-message>.
 bind attach i noop # Normally <ispell>.
 bind attach m noop # Normally <view-mailcap>, which we have bound to <return>.
 bind attach r noop # Normally <reply>.
@@ -33,7 +33,7 @@ bind generic < noop # Normally <previous-line>.
 bind generic = noop # Normally <first-entry>.
 bind generic > noop # Normally <next-line>.
 bind generic [ noop # Normally <half-up>.
-bind generic \; noop # Normally <tag-prefix>.
+# bind generic \; noop # Normally <tag-prefix>.
 bind generic ] noop # Normally <half-down>.
 bind generic x tag-entry
 bind generic z noop # Normally <next-page>.
