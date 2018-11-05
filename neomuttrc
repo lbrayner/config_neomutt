@@ -22,6 +22,10 @@ set mail_check_stats
 # message/rfc822 MIME part instead of included in the main body of the message. 
 set mime_forward
 
+# This quadoption controls whether or not the user is automatically placed in
+# the editor when forwarding messages.
+set forward_edit=no
+
 # When this variable is set, Mutt will decode RFC2047-encoded MIME parameters.
 # You want to set this variable when mutt suggests you to save attachments...
 set rfc2047_parameters=yes
