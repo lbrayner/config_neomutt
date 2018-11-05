@@ -21,6 +21,7 @@ bind attach,index,pager \CF noop # Normally <forget-passphrase>.
 bind attach,index,pager \CK noop # Normally <extract-keys>.
 bind attach,index,pager b previous-page # Normally <bounce-message>, but we use \b for that.
 bind attach,index,pager d noop # Usually <delete-entry> or <delete-message>, but we use "#" for that instead.
+bind attach,index,pager D delete-message
 bind attach,index,pager p noop # Normally <print-entry> or <print-message>.
 bind browser,index G last-entry
 bind browser,index g noop
@@ -95,4 +96,4 @@ bind pager k previous-line
 bind pager o noop # Normally <sort-mailbox>.
 bind pager u exit
 
-# vim:ft=neomuttrc
+# vim:ft=muttrc
