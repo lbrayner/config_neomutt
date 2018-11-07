@@ -34,6 +34,17 @@ set rfc2047_parameters=yes
 # folders
 set header_cache=$HOME/.config/neomutt/.cache/mutt_cache/
 
+# Specifies how to sort messages in the “index” menu.
+set sort=threads
+
+# Specifies how to sort entries in the file browser.
+set sort_browser=date
+
+# When sorting by threads, this variable controls how threads are sorted in
+# relation to other threads, and how the branches of the thread trees are
+# sorted. 
+set sort_aux=last-date-received
+
 # This variable specifies which files to consult when attempting to display
 # MIME bodies not directly supported by Mutt.
 set mailcap_path=$HOME/.config/neomutt/mailcap
