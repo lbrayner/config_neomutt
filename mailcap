@@ -3,6 +3,8 @@ text/html; lynx_mailcap %s; nametemplate=%s.html; copiousoutput
 
 image/jpg; feh %s >/dev/null 2>&1; test=test -n "$DISPLAY"
 
+image/jpeg; feh %s >/dev/null 2>&1; test=test -n "$DISPLAY"
+
 image/png; feh %s >/dev/null 2>&1; test=test -n "$DISPLAY"
 
 application/pdf; mupdf %s >/dev/null 2>&1; test=test -n "$DISPLAY"
