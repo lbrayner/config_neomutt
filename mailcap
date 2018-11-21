@@ -1,6 +1,8 @@
 text/html;  firefox_mailcap %s >/dev/null 2>&1; description=HTML Text; test=test -n "$DISPLAY";  nametemplate=%s.html
 text/html; lynx_mailcap %s; nametemplate=%s.html; copiousoutput
 
+text/plain; text_mailcap %s %{charset}; needsterminal
+
 image/jpg; feh %s >/dev/null 2>&1; test=test -n "$DISPLAY"
 
 image/jpeg; feh %s >/dev/null 2>&1; test=test -n "$DISPLAY"

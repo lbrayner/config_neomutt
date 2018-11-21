@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# set -x
+
+print_usage() {
+	printf '\n%s\n' "$(basename "${0}") FILE"
+}
+
+latin1(){
+    file -i "${1}" | grep -q -i iso-8859-1
+}
+
+declares_charset(){
+    grep -q -i 'charset=' "${1}"
+}
+
+if [ ! ${#} -eq 1 ]
+then
+	print_usage
+	exit 1
+fi
+
+copy=$(mktemp --suffix="_mailcap.html")
+
+cp -f "${1}" "${copy}"
+
+if ! `declares_charset "${copy}"`
+then
+    if `latin1 "${copy}"`
+    then
+        iconvert -B -f latin1 -t utf-8 "${copy}"
+    fi
+fi
+
+/usr/bin/firefox "${copy}" >/dev/null 2>&1

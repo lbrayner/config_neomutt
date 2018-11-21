@@ -6,7 +6,7 @@ bind attach <Esc>e noop # Normally <resend-message>.
 bind attach <tab> collapse-parts # Normally "v".
 # bind attach f noop # Normally <forward-message>.
 bind attach i noop # Normally <ispell>.
-bind attach m noop # Normally <view-mailcap>, which we have bound to <return>.
+# bind attach m noop # Normally <view-mailcap>, which we have bound to <return>.
 bind attach r noop # Normally <reply>.
 bind attach \\ noop
 bind attach <esc>r reply

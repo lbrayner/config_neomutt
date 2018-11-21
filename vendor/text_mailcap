@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# https://github.com/wincent/wincent
+
+vim_encoding(){
+    if echo "${1}" | grep -q -i iso-8859-1
+    then
+        echo latin1
+        return 0
+    fi
+    echo "${1}"
+}
+
+TMPFILE="$1"
+ENCODING="${2}"
+
+# Need to copy the file because mutt will delete it before Vim can read it.
+DIR=$(mktemp -d)
+cp "$TMPFILE" "$DIR/preview"
+TMPFILE="$DIR/preview"
+
+enc=$(vim_encoding "${ENCODING}")
+
+nvim -R "+set fileencoding=${enc}" '+set filetype=mail' \
+    '+set nofoldenable' '+set nomodifiable' "$TMPFILE"

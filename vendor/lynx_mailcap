@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# set -x
+
+print_usage() {
+	printf '\n%s\n' "$(basename "${0}") FILE"
+}
+
+latin1(){
+    file -i "${1}" | grep -q -i iso-8859-1
+}
+
+maybe_convert(){
+    if `latin1 "${1}"`
+    then
+        iconv -f latin1 -t utf-8 "${1}"
+    else
+        cat "${1}"
+    fi
+}
+
+if [ ! ${#} -eq 1 ]
+then
+	print_usage
+	exit 1
+fi
+
+maybe_convert "${1}" | lynx -stdin -display_charset=utf-8 -dump
