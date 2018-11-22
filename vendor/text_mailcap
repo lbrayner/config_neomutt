@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -x
+# set -x
 
 # https://github.com/wincent/wincent
 
@@ -8,13 +8,13 @@ print_usage() {
 	printf '\n%s\n' "$(basename $0) [-c CHARSET] FILE"
 }
 
-encoding="utf-8"
+charset="utf-8"
 
 while getopts ":c:" opt
 do
     case ${opt} in
         c)
-            encoding="${OPTARG}"
+            charset="${OPTARG}"
             ;;
         \?)
             echo "Invalid option: -$OPTARG" >&2 
@@ -42,31 +42,32 @@ vim_encoding(){
 tmpfile="${1}"
 
 # Need to copy the file because mutt will delete it before Vim can read it.
-dir=$(mktemp -d)
-cp "$tmpfile" "$dir/preview"
-tmpfile="$dir/preview"
+dir=$(mktemp -d --suffix=_mutt)
+name="$(basename "${tmpfile}")"
+copy="${dir}/${name}"
+cp -f "${tmpfile}" "${copy}"
 
-enc=$(vim_encoding "${encoding}")
+encoding=$(vim_encoding "${charset}")
 
 if [ -n "$TMUX" ]
 then
-    COLUMNS=`tput cols`
-    if [ ${COLUMNS} -gt 180 ]
+    columns=`tput cols`
+    if [ ${columns} -gt 180 ]
     then
         tmux split-window -p 50 -h \
-            nvim -R "+set fileencoding=${enc}" '+set filetype=mail' \
-            '+set nofoldenable' '+set nomodifiable' "$tmpfile"
+            nvim -R "+set fileencoding=${encoding}" '+set filetype=mail' \
+            '+set nofoldenable' '+set nomodifiable' "${copy}"
         exit 0
     fi
         tmux split-window -p 50 -v \
-            nvim -R "+set fileencoding=${enc}" '+set filetype=mail' \
-            '+set nofoldenable' '+set nomodifiable' "$tmpfile"
+            nvim -R "+set fileencoding=${encoding}" '+set filetype=mail' \
+            '+set nofoldenable' '+set nomodifiable' "${copy}"
     exit 0
 fi
 if [ -n "${DISPLAY}"]
 then
-    urxvt -e $SHELL -c "nvim -R \"+set fileencoding=${enc}\" \
+    urxvt -e $SHELL -c "nvim -R \"+set fileencoding=${encoding}\" \
         '+set filetype=mail' '+set nofoldenable' '+set nomodifiable' \
-        $tmpfile" >/dev/null 2>&1 &
+        ${copy}" >/dev/null 2>&1 &
     exit 0
 fi
