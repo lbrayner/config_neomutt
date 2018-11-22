@@ -59,12 +59,12 @@ then
             '+set nofoldenable' '+set nomodifiable' "${copy}"
         exit 0
     fi
-        tmux split-window -p 50 -v \
-            nvim -R "+set fileencoding=${encoding}" '+set filetype=mail' \
-            '+set nofoldenable' '+set nomodifiable' "${copy}"
+    tmux split-window -p 50 -v \
+        nvim -R "+set fileencoding=${encoding}" '+set filetype=mail' \
+        '+set nofoldenable' '+set nomodifiable' "${copy}"
     exit 0
 fi
-if [ -n "${DISPLAY}"]
+if [ -n "${DISPLAY}" ]
 then
     urxvt -e $SHELL -c "nvim -R \"+set fileencoding=${encoding}\" \
         '+set filetype=mail' '+set nofoldenable' '+set nomodifiable' \
