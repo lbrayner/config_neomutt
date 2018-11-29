@@ -20,6 +20,7 @@ macro index,pager gt "<change-folder><<enter>" "go to record"
 
 macro index,pager | "<pipe-message>" "pipe message to..."
 macro index,pager W "<pipe-message>cat > " "save [O]riginal message"
+macro index,pager X "<pipe-message>munpack_custom -C " "unpack attachments"
 
 # Select all.
 macro index *a "<tag-pattern>~A<enter>" "select all"
@@ -44,7 +45,7 @@ macro index I "<tag-prefix><clear-flag>N" "mark as read"
 
 # macro '/' performs a notmuch query, showing only the results
 # macro 'S' executes the limit command, defined in limit.mutt
-macro index / "X <enter-command>unset wait_key<enter>\
+macro index / "T <enter-command>unset wait_key<enter>\
 <shell-escape>\
 from=\"to:$(cat ~/.cache/mutt_from) \"; \
 terms=\$(rlwrap -H ~/.cache/notmuch_history -P \"\$from\" \
