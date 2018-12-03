@@ -36,7 +36,8 @@ bind generic > noop # Normally <next-line>.
 bind generic [ noop # Normally <half-up>.
 # bind generic \; noop # Normally <tag-prefix>.
 bind generic ] noop # Normally <half-down>.
-bind generic x tag-entry
+bind index x noop
+bind index,generic x tag-entry
 bind generic z noop # Normally <next-page>.
 bind index M noop # Normally <next-page>.
 bind index % noop # Normally <toggle-write>.
