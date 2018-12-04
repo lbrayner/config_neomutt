@@ -52,6 +52,7 @@ bind index T noop # Normally <tag-pattern>.
 bind index V noop # Normally bound to "show-version".
 bind index \CT noop # Normally <untag-pattern>.
 bind index t tag-thread # Usually "tag-entry", but we use "x" (Gmail key) for that.
+bind index <F6> flag-message
 bind index,pager & noop # Normally <link-threads>.
 bind index,pager . noop # Normally <buffy-list>.
 bind index,pager <Esc>C noop # Normally <decode-copy>.
