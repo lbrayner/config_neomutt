@@ -8,7 +8,7 @@ print_usage() {
 	printf '\n%s\n' "$(basename $0) [-c CHARSET] FILE"
 }
 
-charset="utf-8"
+charset=""
 
 while getopts ":c:" opt
 do
@@ -55,18 +55,18 @@ then
     if [ ${columns} -gt 180 ]
     then
         tmux split-window -p 50 -h \
-            nvim -R "+set fileencoding=${encoding}" '+set filetype=mail' \
-            '+set nofoldenable' '+set nomodifiable' "${copy}"
+            nvim -R "+set fileencoding=${encoding}" '+set nomodified' \
+            '+set filetype=mail' '+set nofoldenable' '+set nomodifiable' "${copy}"
         exit 0
     fi
     tmux split-window -p 50 -v \
-        nvim -R "+set fileencoding=${encoding}" '+set filetype=mail' \
+        nvim -R "+set fileencoding=${encoding}" '+set nomodified' '+set filetype=mail' \
         '+set nofoldenable' '+set nomodifiable' "${copy}"
     exit 0
 fi
 if [ -n "${DISPLAY}" ]
 then
-    urxvt -e $SHELL -c "nvim -R \"+set fileencoding=${encoding}\" \
+    urxvt -e $SHELL -c "nvim -R \"+set fileencoding=${encoding}\" '+set nomodified' \
         '+set filetype=mail' '+set nofoldenable' '+set nomodifiable' \
         ${copy}" >/dev/null 2>&1 &
     exit 0
