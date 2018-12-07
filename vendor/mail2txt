@@ -5,6 +5,7 @@ import os
 
 import email
 from email.message import EmailMessage
+from email.header import decode_header
 
 script = sys.argv[0]
 args = sys.argv[1:]
@@ -18,6 +19,18 @@ if len(args) != 1:
 
 arg = args[0]
 
+def decode_pair(pair):
+    binary = pair[0]
+    encoding = pair[1]
+
+    if encoding is None:
+        if isinstance(binary, bytes):
+            return binary.decode("ascii")
+        else:
+            return binary
+
+    return binary.decode(encoding)
+
 headers = ['From','To','Subject','Date']
 
 def mail2txt(file):
@@ -27,7 +40,11 @@ def mail2txt(file):
         raise ValueError('This message does not contain a plaintext part.')
 
     for header in headers:
-        print("%s: %s" % (header,message[header]))
+        mime_header = message[header]
+        decoded_mime_header = "".join([*map(lambda x: decode_pair(x),decode_header(mime_header))])
+        # decoded_mime_header = [*decoded_mime_header]
+        # decoded_mime_header = decode_header(mime_header)
+        print("%s: %s" % (header,decoded_mime_header))
 
     print()
 
