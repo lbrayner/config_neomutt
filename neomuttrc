@@ -20,7 +20,7 @@ set mail_check_stats
 
 # When set, the message you are forwarding will be attached as a separate
 # message/rfc822 MIME part instead of included in the main body of the message. 
-set mime_forward
+set mime_forward=ask-yes
 
 # This quadoption controls whether or not the user is automatically placed in
 # the editor when forwarding messages.

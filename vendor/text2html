@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Hard breaks
+
+sed -E '/^----- Forwarded/,/^Subject/ s/$/  /' /dev/stdin \
+    | mailmd2html
