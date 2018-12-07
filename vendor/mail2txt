@@ -31,7 +31,7 @@ def decode_pair(pair):
 
     return decoded_string.decode(charset)
 
-headers = ['From','To','Subject','Date']
+headers = ['Date','From','To','Cc','Bcc','Subject']
 
 def mail2txt(file):
     message = email.message_from_file(file,_class=EmailMessage)
