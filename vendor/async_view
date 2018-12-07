@@ -14,8 +14,20 @@ then
 	exit 1
 fi
 
+redir=$(mktemp --suffix=_mutt)
 tmpfile=$(mktemp --suffix=_mutt)
 
-mail2txt - <&0 > "${tmpfile}"
+cat <&0 > "${redir}"
+
+latin1(){
+    file -i "${1}" | grep -q -i iso-8859-1
+}
+
+if `latin1 "${redir}"`
+then
+    iconvert -B -f latin1 -t utf-8 "${redir}"
+fi
+
+mail2txt "${redir}" > "${tmpfile}"
 
 text_mailcap "${tmpfile}"
