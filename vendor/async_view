@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# set -x
+set -e
+
+print_usage() {
+	printf '\n%s\n' "$(basename $0)"
+}
+
+# Reads from stdin
+if [ ! ${#} -eq 0 ]
+then
+	print_usage
+	exit 1
+fi
+
+tmpfile=$(mktemp --suffix=_mutt)
+
+mail2txt - <&0 > "${tmpfile}"
+
+text_mailcap "${tmpfile}"

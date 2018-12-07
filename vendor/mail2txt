@@ -24,7 +24,7 @@ def mail2txt(file):
     message = email.message_from_file(file,_class=EmailMessage)
 
     if message.get_default_type() != 'text/plain':
-        return
+        raise ValueError('This message does not contain a plaintext part.')
 
     for header in headers:
         print("%s: %s" % (header,message[header]))
@@ -36,19 +36,15 @@ def mail2txt(file):
             continue
 
         payload = part.get_payload(decode=True)
-        # print(type(part))
-        # print(type(payload))
-        # print(part.get_content_type())
-        # print(part.get_content_charset())
 
         print(payload.decode(part.get_content_charset()))
 
-        # eval("print('" + part.get_payload(decode=True) + "')")
+        break
 
-    # print("\n\n---------------\n")
+    print("\n\n---------------HEADERS---------------\n")
 
-    # for entry in  message.items():
-    #     print("%s: %s" % entry)
+    for entry in  message.items():
+        print("%s: %s" % entry)
 
 if arg == "-":
     mail2txt(sys.stdin) # '-' reads from standard input
