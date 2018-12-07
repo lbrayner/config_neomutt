@@ -50,10 +50,14 @@ def mail2txt(file):
         if part.get_content_type() != message.get_default_type():
             continue
 
-        payload = part.get_payload(decode=True)
+        content_transfer_encoding = part['Content-Transfer-Encoding']
 
-        print(payload.decode(part.get_content_charset()))
+        if content_transfer_encoding == "quoted-printable":
+            payload = part.get_payload(decode=True)
+            print(payload.decode(part.get_content_charset()))
+            break
 
+        print(part.get_payload())
         break
 
     print("---------- HEADERS ----------")
