@@ -21,6 +21,7 @@ macro index,pager gt "<change-folder><<enter>" "go to record"
 macro index,pager | "<pipe-message>" "pipe message to..."
 macro index,pager W "<pipe-message>cat > " "save [O]riginal message"
 macro index,pager X "<pipe-message>munpack_custom -C " "unpack attachments"
+macro index,pager M "<pipe-message>async_view<enter>" "Use mail2txt to view message asynchronously"
 
 # Select all.
 macro index *a "<tag-pattern>~A<enter>" "select all"
