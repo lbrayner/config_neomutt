@@ -20,16 +20,16 @@ if len(args) != 1:
 arg = args[0]
 
 def decode_pair(pair):
-    binary = pair[0]
-    encoding = pair[1]
+    decoded_string = pair[0]
+    charset = pair[1]
 
-    if encoding is None:
-        if isinstance(binary, bytes):
-            return binary.decode("ascii")
+    if charset is None:
+        if isinstance(decoded_string, bytes):
+            return decoded_string.decode("ascii")
         else:
-            return binary
+            return decoded_string
 
-    return binary.decode(encoding)
+    return decoded_string.decode(charset)
 
 headers = ['From','To','Subject','Date']
 
@@ -40,10 +40,8 @@ def mail2txt(file):
         raise ValueError('This message does not contain a plaintext part.')
 
     for header in headers:
-        mime_header = message[header]
-        decoded_mime_header = "".join([*map(lambda x: decode_pair(x),decode_header(mime_header))])
-        # decoded_mime_header = [*decoded_mime_header]
-        # decoded_mime_header = decode_header(mime_header)
+        header_list_pair = decode_header(message[header])
+        decoded_mime_header = "".join([*map(lambda x: decode_pair(x),header_list_pair)])
         print("%s: %s" % (header,decoded_mime_header))
 
     print()
@@ -58,7 +56,7 @@ def mail2txt(file):
 
         break
 
-    print("\n\n---------------HEADERS---------------\n")
+    print("---------- HEADERS ----------")
 
     for entry in  message.items():
         print("%s: %s" % entry)
