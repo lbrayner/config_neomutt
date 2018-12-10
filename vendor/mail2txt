@@ -31,7 +31,7 @@ def decode_pair(pair):
 
     return decoded_string.decode(charset)
 
-headers = ['Date','From','To','Cc','Bcc','Subject']
+headers = ['Date','From','To','Cc','Subject']
 
 def mail2txt(file):
     message = email.message_from_file(file,_class=EmailMessage)
@@ -40,6 +40,9 @@ def mail2txt(file):
         raise ValueError('This message does not contain a plaintext part.')
 
     for header in headers:
+        if header not in message:
+            continue
+
         header_list_pair = decode_header(message[header])
         decoded_mime_header = "".join([*map(lambda x: decode_pair(x),header_list_pair)])
         print("%s: %s" % (header,decoded_mime_header))
