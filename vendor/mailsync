@@ -11,8 +11,8 @@
 export DISPLAY=:0.0
 
 # Checks for internet connection and set notification script.
-# ping -q -w 1 -c 1 `ip r | grep -m 1 default | cut -d ' ' -f 3` >/dev/null || exit
-ping -q -w 1 -c 1 8.8.8.8 >/dev/null || exit
+ping -q -w 1 -c 1 `ip r | grep -m 1 default | cut -d ' ' -f 3` >/dev/null || exit
+# ping -q -w 1 -c 1 8.8.8.8 >/dev/null || exit
 
 notify() {
     notify-send -i ~/.config/mutt/etc/email.gif \

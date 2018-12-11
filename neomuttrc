@@ -26,6 +26,11 @@ set mime_forward=ask-yes
 # the editor when forwarding messages.
 set forward_edit=no
 
+# When set, the initial prompt for recipients and subject are skipped when
+# replying to messages, and the initial prompt for subject is skipped when
+# forwarding messages. 
+set fast_reply=yes
+
 # When this variable is set, Mutt will decode RFC2047-encoded MIME parameters.
 # You want to set this variable when mutt suggests you to save attachments...
 set rfc2047_parameters=yes
