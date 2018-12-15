@@ -1,5 +1,4 @@
 # performs the latest search
-macro index S "<limit>`cat ~/.cache/mutt_limit_pattern`<enter>\
-<shell-escape>cp ~/.cache/mutt_terms ~/.cache/mutt_terms_old && printf '' > ~/.cache/mutt_terms<enter>"
+macro index S "<limit>`cat ~/.cache/mutt_limit_pattern`<enter>"
 
 # vim:ft=muttrc
