@@ -1,8 +1,5 @@
 # performs the latest search
-macro index S \
-"<limit>`xargs -0 notmuch search --output=messages < ~/.cache/mutt_terms | \
-head -n 20 | tee ~/.cache/mutt_search_results | \
-notmuch2limit | tee ~/.cache/mutt_limit_pattern`<enter>\
+macro index S "<limit>`cat ~/.cache/mutt_limit_pattern`<enter>\
 <shell-escape>cp ~/.cache/mutt_terms ~/.cache/mutt_terms_old && printf '' > ~/.cache/mutt_terms<enter>"
 
 # vim:ft=muttrc

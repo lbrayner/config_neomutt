@@ -21,7 +21,7 @@ macro compose <esc>0 \
 ^t<esc>b^b^b<esc><BackSpace>html<enter>"
 
 macro index,pager gi "<change-folder>!<enter>" "go to inbox"
-macro index,pager gt "<change-folder><<enter>" "go to record"
+macro index,pager gr "<change-folder><<enter>" "go to record"
 
 macro index,pager | "<pipe-message>" "pipe message to..."
 macro index,pager W "<pipe-message>cat > " "save [O]riginal message"
@@ -56,7 +56,17 @@ macro index / "T <enter-command>unset wait_key<enter>\
 from=\"to:$(cat ~/.cache/mutt_from) \"; \
 terms=\$(rlwrap -H ~/.cache/notmuch_history -P \"\$from\" \
     sh -c 'read -r -p \"notmuch: \" reply && echo $reply'); \
-test -n \"\$terms\" && printf \"\$terms\" > ~/.cache/mutt_terms<enter>\
+test -n \"\$terms\" && printf \"\$terms\" > ~/.cache/mutt_terms && \
+xargs -0 notmuch search --output=messages < ~/.cache/mutt_terms \
+> ~/.cache/mutt_search_results && echo '' >> ~/.cache/mutt_search_results && \
+nmuch2limitpgcycl ~/.cache/mutt_search_results | notmuch2limit > \
+~/.cache/mutt_limit_pattern<enter>\
+<enter-command>source $HOME/.config/neomutt/config/limit.mutt<enter>S"
+
+macro index gt "T <enter-command>unset wait_key<enter>\
+<shell-escape>\
+nmuch2limitpgcycl ~/.cache/mutt_search_results | notmuch2limit > \
+~/.cache/mutt_limit_pattern<enter>\
 <enter-command>source $HOME/.config/neomutt/config/limit.mutt<enter>S"
 
 # 'A' shows all messages again
