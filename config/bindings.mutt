@@ -64,9 +64,10 @@ bind index,pager <Esc>p noop # Normally <next-subthread>.
 bind index,pager <Esc>r noop # Normally <read-subthread>.
 bind index,pager <Esc>s noop # Normally <decode-save>.
 bind index,pager <Esc>u noop # Normally <undelete-subthread>.
+bind index,pager <left> noop # Normally previous page
 bind index,pager <down> sidebar-next
-bind index,pager <right> sidebar-open
 bind index,pager <up> sidebar-prev
+bind index,pager <right> sidebar-open
 bind index,pager F noop # Use "s" (Gmail default) instead.
 bind index,pager N search-opposite # Usually toggles/marks "New" status, but we have U/I for that.
 bind index,pager O noop # Normally <sort-reverse>.
