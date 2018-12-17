@@ -1,4 +1,6 @@
 # performs the latest search
-macro index S "<limit>`cat ~/.cache/mutt_limit_pattern`<enter>"
+macro index S "<limit>`cat ~/.cache/mutt_limit_pattern`<enter>\
+<enter-command>echo \"notmuch found `head -n -1 ~/.cache/mutt_search_results | \
+wc -l` messages.\"<enter>"
 
 # vim:ft=muttrc
