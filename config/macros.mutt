@@ -51,9 +51,11 @@ macro index U "<tag-prefix><set-flag>N" "mark as unread"
 macro pager I <clear-flag>N "mark as read"
 macro index I "<tag-prefix><clear-flag>N" "mark as read"
 
-macro index gt "<shell-escape>test -f ~/.cache/mutt_search_results && \
+macro index gt "<shell-escape>\
+if test -f ~/.cache/mutt_search_abort; then rm -f ~/.cache/mutt_search_abort; \
+else test -f ~/.cache/mutt_search_results && \
 nmuch2limitpgcycl ~/.cache/mutt_search_results | notmuch2limit > \
-~/.cache/mutt_limit_pattern<enter>\
+~/.cache/mutt_limit_pattern; fi<enter>\
 <enter-command>source $HOME/.config/neomutt/config/limit.mutt<enter>S"
 
 # macro '/' performs a notmuch query, showing only the results
@@ -64,11 +66,12 @@ macro index / "<enter-command>unset wait_key<enter>\
 from=\"$(cat ~/.cache/mutt_search_template) \"; \
 terms=\$(rlwrap -H ~/.cache/notmuch_history -P \"\$from\" \
     sh -c 'read -r -p \"notmuch: \" reply && echo $reply'); \
-printf \"\$terms\" > ~/.cache/mutt_terms && test -n \"\$terms\" && \
+printf \"\$terms\" > ~/.cache/mutt_terms ; \
+if test -z \"\$terms\"; then touch ~/.cache/mutt_search_abort; else \
 xargs -0 notmuch search --output=messages < ~/.cache/mutt_terms \
 > ~/.cache/mutt_search_results \
 && wc -l > ~/.cache/mutt_search_count < ~/.cache/mutt_search_results \
-&& echo '' >> ~/.cache/mutt_search_results<enter>gt"
+&& echo '' >> ~/.cache/mutt_search_results; fi<enter>gt"
 
 # 'A' shows all messages again
 macro index A "<limit>all\n"
