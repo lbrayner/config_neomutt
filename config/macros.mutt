@@ -20,8 +20,8 @@ macro compose <esc>0 \
 <attach-file>/tmp/neomutt-alternative<enter><toggle-unlink>\
 ^t<esc>b^b^b<esc><BackSpace>html<enter>"
 
-macro index,pager gi "<change-folder>!<enter>" "go to inbox"
-macro index,pager gr "<change-folder><<enter>" "go to record"
+macro index,pager gi "T1<change-folder>!<enter>" "go to inbox"
+macro index,pager gr "T2<change-folder><<enter>" "go to record"
 
 macro index,pager | "<pipe-message>" "pipe message to..."
 macro index,pager W "<pipe-message>cat > " "save [O]riginal message"
@@ -49,7 +49,7 @@ macro index U "<tag-prefix><set-flag>N" "mark as unread"
 macro pager I <clear-flag>N "mark as read"
 macro index I "<tag-prefix><clear-flag>N" "mark as read"
 
-macro index gt "T <enter-command>unset wait_key<enter>\
+macro index gt "<enter-command>unset wait_key<enter>\
 <shell-escape>\
 nmuch2limitpgcycl ~/.cache/mutt_search_results | notmuch2limit > \
 ~/.cache/mutt_limit_pattern<enter>\
@@ -58,9 +58,9 @@ nmuch2limitpgcycl ~/.cache/mutt_search_results | notmuch2limit > \
 # macro '/' performs a notmuch query, showing only the results
 # macro 'S' executes the limit command, defined in limit.mutt
 # macro 'gt' paginates the last not much query
-macro index / "T <enter-command>unset wait_key<enter>\
+macro index / "<enter-command>unset wait_key<enter>\
 <shell-escape>\
-from=\"to:$(cat ~/.cache/mutt_from) \"; \
+from=\"$(cat ~/.cache/mutt_search_template) \"; \
 terms=\$(rlwrap -H ~/.cache/notmuch_history -P \"\$from\" \
     sh -c 'read -r -p \"notmuch: \" reply && echo $reply'); \
 echo '' > ~/.cache/mutt_search_results; \
