@@ -53,9 +53,9 @@ macro index I "<tag-prefix><clear-flag>N" "mark as read"
 
 macro index gt "<shell-escape>\
 if test -f ~/.cache/mutt_search_abort; then rm -f ~/.cache/mutt_search_abort; \
-else test -f ~/.cache/mutt_search_results && \
+elif test -f ~/.cache/mutt_search_results; then \
 nmuch2limitpgcycl ~/.cache/mutt_search_results | notmuch2limit > \
-~/.cache/mutt_limit_pattern; fi<enter>\
+~/.cache/mutt_limit_pattern; else rm -f ~/.cache/mutt_limit_pattern; fi<enter>\
 <enter-command>source $HOME/.config/neomutt/config/limit.mutt<enter>S"
 
 # macro '/' performs a notmuch query, showing only the results
