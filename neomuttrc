@@ -67,4 +67,7 @@ set date_format="%a %Y %b %e %Hh%M"
 alternative_order text/plain text/html
 auto_view text/html
 
+# custom variables
+set my_mutt_terms=""
+
 # vim:ft=muttrc

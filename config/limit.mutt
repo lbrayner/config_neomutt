@@ -4,4 +4,6 @@ macro index S "<limit>`test -f ~/.cache/mutt_limit_pattern \
 <enter-command>echo \"`if test -n "$(find ~/.cache/mutt_limit_pattern -size +0)"; \
 then echo "notmuch: found $(cat ~/.cache/mutt_search_count) message(s)."; fi`\"<enter>"
 
+source 'printf "set my_mutt_terms=\"notmuch: $(cat ~/.cache/mutt_terms)\"" |'
+
 # vim:ft=muttrc

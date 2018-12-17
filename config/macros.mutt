@@ -51,6 +51,8 @@ macro index U "<tag-prefix><set-flag>N" "mark as unread"
 macro pager I <clear-flag>N "mark as read"
 macro index I "<tag-prefix><clear-flag>N" "mark as read"
 
+macro index \\t "<enter-command>echo $my_mutt_terms<enter>"
+
 macro index gt "<shell-escape>\
 if test -f ~/.cache/mutt_search_abort; then rm -f ~/.cache/mutt_search_abort; \
 elif test -f ~/.cache/mutt_search_results; then \
@@ -66,8 +68,8 @@ macro index / "<enter-command>unset wait_key<enter>\
 from=\"$(cat ~/.cache/mutt_search_template) \"; \
 terms=\$(rlwrap -H ~/.cache/notmuch_history -P \"\$from\" \
     sh -c 'read -r -p \"notmuch: \" reply && echo $reply'); \
-printf \"\$terms\" > ~/.cache/mutt_terms ; \
 if test -z \"\$terms\"; then touch ~/.cache/mutt_search_abort; else \
+printf \"\$terms\" > ~/.cache/mutt_terms && \
 xargs -0 notmuch search --output=messages < ~/.cache/mutt_terms \
 > ~/.cache/mutt_search_results \
 && wc -l > ~/.cache/mutt_search_count < ~/.cache/mutt_search_results \
