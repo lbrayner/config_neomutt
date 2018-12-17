@@ -20,6 +20,8 @@ macro compose <esc>0 \
 <attach-file>/tmp/neomutt-alternative<enter><toggle-unlink>\
 ^t<esc>b^b^b<esc><BackSpace>html<enter>"
 
+macro index T0 "<shell-escape>rm -f ~/.cache/mutt_search_results<enter>"
+
 macro index,pager gi "T1<change-folder>!<enter>" "go to inbox"
 macro index,pager gr "T2<change-folder><<enter>" "go to record"
 
@@ -49,8 +51,7 @@ macro index U "<tag-prefix><set-flag>N" "mark as unread"
 macro pager I <clear-flag>N "mark as read"
 macro index I "<tag-prefix><clear-flag>N" "mark as read"
 
-macro index gt "<enter-command>unset wait_key<enter>\
-<shell-escape>\
+macro index gt "<shell-escape>test -f ~/.cache/mutt_search_results && \
 nmuch2limitpgcycl ~/.cache/mutt_search_results | notmuch2limit > \
 ~/.cache/mutt_limit_pattern<enter>\
 <enter-command>source $HOME/.config/neomutt/config/limit.mutt<enter>S"
@@ -63,10 +64,11 @@ macro index / "<enter-command>unset wait_key<enter>\
 from=\"$(cat ~/.cache/mutt_search_template) \"; \
 terms=\$(rlwrap -H ~/.cache/notmuch_history -P \"\$from\" \
     sh -c 'read -r -p \"notmuch: \" reply && echo $reply'); \
-echo '' > ~/.cache/mutt_search_results; \
 printf \"\$terms\" > ~/.cache/mutt_terms && test -n \"\$terms\" && \
 xargs -0 notmuch search --output=messages < ~/.cache/mutt_terms \
-> ~/.cache/mutt_search_results && echo '' >> ~/.cache/mutt_search_results<enter>gt"
+> ~/.cache/mutt_search_results \
+&& wc -l > ~/.cache/mutt_search_count < ~/.cache/mutt_search_results \
+&& echo '' >> ~/.cache/mutt_search_results<enter>gt"
 
 # 'A' shows all messages again
 macro index A "<limit>all\n"
