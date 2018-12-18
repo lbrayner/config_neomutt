@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Email signatures in <blockquote> blocks
+# Linebreaks preserved in replies
+# No signaure: it's in pandoc's template (mail)
+
+sed -E -e '/> -- ?$/,/> ?$/ s/>( |( >)+)/&    /' \
+    -e '/On.* wrote:$/,$ s/.+/&  /' \
+    -e '/^-- $/q' /dev/stdin \
+    | head -n -1 \
+    | pandoc --quiet --template=mail -f markdown_strict+pipe_tables -t html
