@@ -22,8 +22,8 @@ macro compose <esc>0 \
 
 macro index T0 "<shell-escape>rm -f ~/.cache/mutt_search_results<enter>"
 
-macro index,pager gi "T1<change-folder>!<enter>" "go to inbox"
-macro index,pager gr "T2<change-folder><<enter>" "go to record"
+macro index,pager gi "T0T1<change-folder>!<enter>gt" "go to inbox"
+macro index,pager gr "T0T2<change-folder><<enter>gt" "go to record"
 
 macro index,pager | "<pipe-message>" "pipe message to..."
 macro index,pager W "<pipe-message>cat > " "save [O]riginal message"
