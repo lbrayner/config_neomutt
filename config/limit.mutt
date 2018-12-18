@@ -1,6 +1,8 @@
 # performs the latest search
-macro index S "<limit>`test -f ~/.cache/mutt_limit_pattern \
-    && cat ~/.cache/mutt_limit_pattern`<enter>\
+macro index S "<limit>`\
+if test -f ~/.cache/mutt_search_abort; then rm -f ~/.cache/mutt_search_abort; \
+else test -f ~/.cache/mutt_limit_pattern \
+    && cat ~/.cache/mutt_limit_pattern; fi`<enter>\
 <enter-command>echo \"`if test -n "$(find ~/.cache/mutt_limit_pattern -size +0)"; \
 then echo "notmuch: found $(cat ~/.cache/mutt_search_count) message(s)."; fi`\"<enter>"
 

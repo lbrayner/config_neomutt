@@ -54,7 +54,7 @@ macro index I "<tag-prefix><clear-flag>N" "mark as read"
 macro index \\t "<enter-command>echo $my_mutt_terms<enter>"
 
 macro index gt "<shell-escape>\
-if test -f ~/.cache/mutt_search_abort; then rm -f ~/.cache/mutt_search_abort; \
+if test -f ~/.cache/mutt_search_abort; then :; \
 elif test -f ~/.cache/mutt_search_results; then \
 nmuch2limitpgcycl ~/.cache/mutt_search_results | notmuch2limit > \
 ~/.cache/mutt_limit_pattern; else rm -f ~/.cache/mutt_limit_pattern; fi<enter>\
