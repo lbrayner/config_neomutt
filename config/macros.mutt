@@ -60,9 +60,9 @@ nmuch2limitpgcycl ~/.cache/mutt_search_results | notmuch2limit > \
 ~/.cache/mutt_limit_pattern; else rm -f ~/.cache/mutt_limit_pattern; fi<enter>\
 <enter-command>source $HOME/.config/neomutt/config/limit.mutt<enter>S"
 
-# macro '/' performs a notmuch query, showing only the results
-# macro 'S' executes the limit command, defined in limit.mutt
+# macro '/' performs a notmuch query and limits to the latest results
 # macro 'gt' paginates the last not much query
+# macro 'S' executes the limit command, defined in limit.mutt
 macro index / "<enter-command>unset wait_key<enter>\
 <shell-escape>\
 from=\"$(cat ~/.cache/mutt_search_template) \"; \
