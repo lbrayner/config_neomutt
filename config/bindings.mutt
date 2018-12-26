@@ -26,9 +26,9 @@ bind attach,index,pager p noop # Normally <print-entry> or <print-message>.
 bind browser,index G last-entry
 bind browser,index g noop
 bind browser,index gg first-entry
-bind editor <Tab> complete-query
+bind editor <Tab> complete
 bind editor <space> noop # So line-editor can accept folders with spaces in their names.
-bind editor \CT complete
+bind editor \CT complete-query
 bind generic * noop # Normally <last-entry>.
 bind generic < noop # Normally <previous-line>.
 bind generic = noop # Normally <first-entry>.
