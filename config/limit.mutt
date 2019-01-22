@@ -1,13 +1,13 @@
 # performs the latest search
 macro index S "<limit>`\
-if test -f ~/.cache/mutt_search_abort; then :; \
-else test -f ~/.cache/mutt_limit_pattern \
-    && cat ~/.cache/mutt_limit_pattern; fi`<enter>\
-<enter-command>echo \"`if test -f ~/.cache/mutt_search_abort; \
-then rm -f ~/.cache/mutt_search_abort; \
-elif test -n "$(find ~/.cache/mutt_limit_pattern -size +0 2>/dev/null)"; \
-then echo "notmuch: found $(cat ~/.cache/mutt_search_count) message(s)."; fi`\"<enter>"
+if test -f ~/.cache/$MUTT_CACHE/mutt_search_abort; then :; \
+else test -f ~/.cache/$MUTT_CACHE/mutt_limit_pattern \
+    && cat ~/.cache/$MUTT_CACHE/mutt_limit_pattern; fi`<enter>\
+<enter-command>echo \"`if test -f ~/.cache/$MUTT_CACHE/mutt_search_abort; \
+then rm -f ~/.cache/$MUTT_CACHE/mutt_search_abort; \
+elif test -n "$(find ~/.cache/$MUTT_CACHE/mutt_limit_pattern -size +0 2>/dev/null)"; \
+then echo "notmuch: found $(cat ~/.cache/$MUTT_CACHE/mutt_search_count) message(s)."; fi`\"<enter>"
 
-source 'printf "set my_mutt_terms=\"notmuch: $(cat ~/.cache/mutt_terms)\"" |'
+source 'printf "set my_mutt_terms=\"notmuch: $(cat ~/.cache/$MUTT_CACHE/mutt_terms)\"" |'
 
 # vim:ft=muttrc

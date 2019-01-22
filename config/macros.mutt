@@ -20,7 +20,7 @@ macro compose <esc>0 \
 <attach-file>/tmp/neomutt-alternative<enter><toggle-unlink>\
 ^t<esc>b^b^b<esc><BackSpace>html<enter>"
 
-macro index T0 "<shell-escape>rm -f ~/.cache/mutt_search_results<enter>"
+macro index T0 "<shell-escape>rm -f ~/.cache/\$MUTT_CACHE/mutt_search_results<enter>"
 
 macro index,pager gi "T0T1<change-folder>!<enter>gt" "go to inbox"
 macro index,pager gr "T0T2<change-folder><<enter>gt" "go to record"
@@ -54,10 +54,10 @@ macro index I "<tag-prefix><clear-flag>N" "mark as read"
 macro index \\t "<enter-command>echo $my_mutt_terms<enter>"
 
 macro index gt "<shell-escape>\
-if test -f ~/.cache/mutt_search_abort; then :; \
-elif test -f ~/.cache/mutt_search_results; then \
-nmuch2limitpgcycl ~/.cache/mutt_search_results | notmuch2limit > \
-~/.cache/mutt_limit_pattern; else rm -f ~/.cache/mutt_limit_pattern; fi<enter>\
+if test -f ~/.cache/\$MUTT_CACHE/mutt_search_abort; then :; \
+elif test -f ~/.cache/\$MUTT_CACHE/mutt_search_results; then \
+nmuch2limitpgcycl ~/.cache/\$MUTT_CACHE/mutt_search_results | notmuch2limit > \
+~/.cache/\$MUTT_CACHE/mutt_limit_pattern; else rm -f ~/.cache/\$MUTT_CACHE/mutt_limit_pattern; fi<enter>\
 <enter-command>source $HOME/.config/neomutt/config/limit.mutt<enter>S"
 
 # macro '/' performs a notmuch query and limits to the latest results
@@ -65,15 +65,15 @@ nmuch2limitpgcycl ~/.cache/mutt_search_results | notmuch2limit > \
 # macro 'S' executes the limit command, defined in limit.mutt
 macro index / "<enter-command>unset wait_key<enter>\
 <shell-escape>\
-from=\"$(cat ~/.cache/mutt_search_template) \"; \
-terms=\$(rlwrap -H ~/.cache/notmuch_history -P \"\$from\" \
+from=\"$(cat ~/.cache/\$MUTT_CACHE/mutt_search_template) \"; \
+terms=\$(rlwrap -H ~/.cache/\$MUTT_CACHE/notmuch_history -P \"\$from\" \
     sh -c 'read -r -p \"notmuch: \" reply && echo $reply'); \
-if test -z \"\$terms\"; then touch ~/.cache/mutt_search_abort; else \
-printf \"\$terms\" > ~/.cache/mutt_terms && \
-xargs -0 notmuch search --output=messages < ~/.cache/mutt_terms \
-> ~/.cache/mutt_search_results \
-&& wc -l > ~/.cache/mutt_search_count < ~/.cache/mutt_search_results \
-&& echo '' >> ~/.cache/mutt_search_results; fi<enter>gt"
+if test -z \"\$terms\"; then touch ~/.cache/\$MUTT_CACHE/mutt_search_abort; else \
+printf \"\$terms\" > ~/.cache/\$MUTT_CACHE/mutt_terms && \
+xargs -0 notmuch search --output=messages < ~/.cache/\$MUTT_CACHE/mutt_terms \
+> ~/.cache/\$MUTT_CACHE/mutt_search_results \
+&& wc -l > ~/.cache/\$MUTT_CACHE/mutt_search_count < ~/.cache/\$MUTT_CACHE/mutt_search_results \
+&& echo '' >> ~/.cache/\$MUTT_CACHE/mutt_search_results; fi<enter>gt"
 
 # 'A' shows all messages again
 macro index A "<limit>all\n"
