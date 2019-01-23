@@ -20,7 +20,7 @@ macro compose <esc>0 \
 <attach-file>/tmp/neomutt-alternative<enter><toggle-unlink>\
 ^t<esc>b^b^b<esc><BackSpace>html<enter>"
 
-macro index T0 "<shell-escape>rm -f ~/.cache/\$MUTT_CACHE/mutt_search_results<enter>"
+macro index,pager T0 "<shell-escape>rm -f ~/.cache/\$MUTT_CACHE/mutt_search_results<enter>"
 
 macro index,pager gi "T0T1<change-folder>!<enter>gt" "go to inbox"
 macro index,pager gr "T0T2<change-folder><<enter>gt" "go to record"
@@ -57,7 +57,8 @@ macro index gt "<shell-escape>\
 if test -f ~/.cache/\$MUTT_CACHE/mutt_search_abort; then :; \
 elif test -f ~/.cache/\$MUTT_CACHE/mutt_search_results; then \
 nmuch2limitpgcycl ~/.cache/\$MUTT_CACHE/mutt_search_results | notmuch2limit > \
-~/.cache/\$MUTT_CACHE/mutt_limit_pattern; else rm -f ~/.cache/\$MUTT_CACHE/mutt_limit_pattern; fi<enter>\
+~/.cache/\$MUTT_CACHE/mutt_limit_pattern; \
+else rm -f ~/.cache/\$MUTT_CACHE/mutt_limit_pattern; fi<enter>\
 <enter-command>source $HOME/.config/neomutt/config/limit.mutt<enter>S"
 
 # macro '/' performs a notmuch query and limits to the latest results
