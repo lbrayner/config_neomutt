@@ -51,6 +51,8 @@ macro index U "<tag-prefix><set-flag>N" "mark as unread"
 macro pager I <clear-flag>N "mark as read"
 macro index I "<tag-prefix><clear-flag>N" "mark as read"
 
+macro index,pager <F12> "<enter-command>echo $MUTT_CACHE<enter>" "Displays $MUTT_CACHE"
+
 macro index \\t "<enter-command>echo $my_mutt_terms<enter>"
 
 macro index gt "<shell-escape>\

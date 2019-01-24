@@ -12,3 +12,5 @@ image/jpeg; feh %s >/dev/null 2>&1; test=test -n "$DISPLAY"
 image/png; feh %s >/dev/null 2>&1; test=test -n "$DISPLAY"
 
 application/pdf; mupdf %s >/dev/null 2>&1; test=test -n "$DISPLAY"
+
+application/vnd.ms-excel; ms_excel_mailcap %s >/dev/null 2>&1

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# set -x
+
+print_usage() {
+	printf '\n%s\n' "$(basename "${0}") FILE"
+}
+
+if [ ! ${#} -eq 1 ]
+then
+	print_usage
+	exit 1
+fi
+
+extension=${1#*.}
+echo ${extension}
+
+# extension=${1%*.}
+# echo ${extension}
+
+copy=$(mktemp --suffix="_mailcap.${extension}")
+
+cp -f "${1}" "${copy}"
+
+localc "${copy}" 2>&1 >/dev/null
