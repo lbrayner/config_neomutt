@@ -5,12 +5,9 @@ text/plain; text_mailcap -c %{charset} %s
 
 multipart/alternative; text_mailcap %s
 
-image/jpg; feh %s >/dev/null 2>&1; test=test -n "$DISPLAY"
-
-image/jpeg; feh %s >/dev/null 2>&1; test=test -n "$DISPLAY"
-
-image/png; feh %s >/dev/null 2>&1; test=test -n "$DISPLAY"
+image/*; feh %s >/dev/null 2>&1; test=test -n "$DISPLAY"
 
 application/pdf; mupdf %s >/dev/null 2>&1; test=test -n "$DISPLAY"
 
-application/vnd.ms-excel; ms_excel_mailcap %s >/dev/null 2>&1
+application/vnd.ms-excel; libreoffice_mailcap %s >/dev/null 2>&1; test=test -n "$DISPLAY"
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;  libreoffice_mailcap %s >/dev/null 2>&1; test=test -n "$DISPLAY"
