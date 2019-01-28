@@ -10,4 +10,5 @@ image/*; feh %s >/dev/null 2>&1; test=test -n "$DISPLAY"
 application/pdf; mupdf %s >/dev/null 2>&1; test=test -n "$DISPLAY"
 
 application/vnd.ms-excel; libreoffice_mailcap %s >/dev/null 2>&1; test=test -n "$DISPLAY"
+application/msword; libreoffice_mailcap %s >/dev/null 2>&1; test=test -n "$DISPLAY"
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;  libreoffice_mailcap %s >/dev/null 2>&1; test=test -n "$DISPLAY"
