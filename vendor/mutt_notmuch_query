@@ -1,0 +1,17 @@
+#!/bin/bash
+
+from="$(cat ~/.cache/$MUTT_CACHE/mutt_search_template) "
+terms=$(rlwrap -H ~/.cache/$MUTT_CACHE/notmuch_history -P "$from" \
+    sh -c 'read -r -p "notmuch: " reply && echo $reply')
+
+if [[ -z "$terms" ]]
+then
+    touch ~/.cache/\$MUTT_CACHE/mutt_search_abort
+else
+    printf "$terms" > ~/.cache/$MUTT_CACHE/mutt_terms
+    xargs -0 notmuch search --output=messages < ~/.cache/$MUTT_CACHE/mutt_terms \
+        > ~/.cache/$MUTT_CACHE/mutt_search_results 
+    wc -l > ~/.cache/$MUTT_CACHE/mutt_search_count < \
+        ~/.cache/$MUTT_CACHE/mutt_search_results 
+    echo '' >> ~/.cache/$MUTT_CACHE/mutt_search_results
+fi

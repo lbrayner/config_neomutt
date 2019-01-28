@@ -51,35 +51,18 @@ macro index U "<tag-prefix><set-flag>N" "mark as unread"
 macro pager I <clear-flag>N "mark as read"
 macro index I "<tag-prefix><clear-flag>N" "mark as read"
 
-# macro index,pager <F10> "<enter-command>echo $my_mutt_terms<enter>"
 macro index,pager <F11> '<enter-command>echo "notmuch: Found \
 $my_mutt_search_count message(s). [$my_mutt_terms]"<enter>'
 macro index,pager <F12> "<enter-command>echo $MUTT_CACHE<enter>" "Displays $MUTT_CACHE"
 
-macro index gt "<shell-escape>\
-if test -f ~/.cache/\$MUTT_CACHE/mutt_search_abort; then :; \
-elif test -f ~/.cache/\$MUTT_CACHE/mutt_search_results; then \
-nmuch2limitpgcycl ~/.cache/\$MUTT_CACHE/mutt_search_results | notmuch2limit > \
-~/.cache/\$MUTT_CACHE/mutt_limit_pattern; \
-else rm -f ~/.cache/\$MUTT_CACHE/mutt_limit_pattern; fi<enter>\
+macro index gt "<shell-escape>mutt_notmuch_results_forward<enter>\
 <enter-command>source $HOME/.config/neomutt/config/limit.mutt<enter>S\
 <enter-command>source $HOME/.config/neomutt/config/count.mutt<enter>S"
 
 # macro '/' performs a notmuch query and limits to the latest results
 # macro 'gt' paginates the last not much query
 # macro 'S' executes the limit command, defined in limit.mutt
-macro index / "<enter-command>unset wait_key<enter>\
-<shell-escape>\
-from=\"$(cat ~/.cache/\$MUTT_CACHE/mutt_search_template) \"; \
-terms=\$(rlwrap -H ~/.cache/\$MUTT_CACHE/notmuch_history -P \"\$from\" \
-    sh -c 'read -r -p \"notmuch: \" reply && echo $reply'); \
-if test -z \"\$terms\"; then touch ~/.cache/\$MUTT_CACHE/mutt_search_abort; else \
-printf \"\$terms\" > ~/.cache/\$MUTT_CACHE/mutt_terms && \
-xargs -0 notmuch search --output=messages < ~/.cache/\$MUTT_CACHE/mutt_terms \
-> ~/.cache/\$MUTT_CACHE/mutt_search_results \
-&& wc -l > ~/.cache/\$MUTT_CACHE/mutt_search_count < \
-~/.cache/\$MUTT_CACHE/mutt_search_results \
-&& echo '' >> ~/.cache/\$MUTT_CACHE/mutt_search_results; fi<enter>gt"
+macro index / "<enter-command>unset wait_key<enter><shell-escape>mutt_notmuch_query<enter>gt"
 
 # 'A' shows all messages again
 macro index A "<limit>all\n"

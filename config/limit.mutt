@@ -1,14 +1,7 @@
 source 'printf "set my_mutt_terms=\"$(cat ~/.cache/$MUTT_CACHE/mutt_terms)\"" |'
 
 # performs the latest search
-macro index S "<limit>`\
-if test -f ~/.cache/$MUTT_CACHE/mutt_search_abort; then :; \
-else test -f ~/.cache/$MUTT_CACHE/mutt_limit_pattern \
-    && cat ~/.cache/$MUTT_CACHE/mutt_limit_pattern; fi`<enter>\
-<shell-escape>rm -f ~/.cache/$MUTT_CACHE/mutt_search_succeeded; \
-if test -f ~/.cache/$MUTT_CACHE/mutt_search_abort; \
-then rm -f ~/.cache/$MUTT_CACHE/mutt_search_abort; \
-elif test -n \"$(find ~/.cache/$MUTT_CACHE/mutt_limit_pattern -size +0 2>/dev/null)\"; \
-then touch ~/.cache/$MUTT_CACHE/mutt_search_succeeded; fi<enter>"
+macro index S "<limit>`mutt_notmuch_limit`<enter>\
+<shell-escape>mutt_notmuch_search_outcome<enter>"
 
 # vim:ft=muttrc

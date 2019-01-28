@@ -1,0 +1,14 @@
+#!/bin/bash
+
+rm -f ~/.cache/$MUTT_CACHE/mutt_search_succeeded
+
+if [[ -f ~/.cache/$MUTT_CACHE/mutt_search_abort ]]
+then
+    rm -f ~/.cache/$MUTT_CACHE/mutt_search_abort
+    exit 0
+fi
+
+if [[ -n "$(find ~/.cache/$MUTT_CACHE/mutt_limit_pattern -size +0 2>/dev/null)" ]]
+then
+    touch ~/.cache/$MUTT_CACHE/mutt_search_succeeded
+fi
