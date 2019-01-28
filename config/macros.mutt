@@ -63,7 +63,7 @@ nmuch2limitpgcycl ~/.cache/\$MUTT_CACHE/mutt_search_results | notmuch2limit > \
 ~/.cache/\$MUTT_CACHE/mutt_limit_pattern; \
 else rm -f ~/.cache/\$MUTT_CACHE/mutt_limit_pattern; fi<enter>\
 <enter-command>source $HOME/.config/neomutt/config/limit.mutt<enter>S\
-<enter-command>source $HOME/.config/neomutt/config/echo.mutt<enter>S"
+<enter-command>source $HOME/.config/neomutt/config/count.mutt<enter>S"
 
 # macro '/' performs a notmuch query and limits to the latest results
 # macro 'gt' paginates the last not much query
