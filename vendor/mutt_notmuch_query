@@ -6,7 +6,7 @@ terms=$(rlwrap -H ~/.cache/$MUTT_CACHE/notmuch_history -P "$from" \
 
 if [[ -z "$terms" ]]
 then
-    touch ~/.cache/\$MUTT_CACHE/mutt_search_abort
+    touch ~/.cache/$MUTT_CACHE/mutt_search_abort
 else
     printf "$terms" > ~/.cache/$MUTT_CACHE/mutt_terms
     xargs -0 notmuch search --output=messages < ~/.cache/$MUTT_CACHE/mutt_terms \
