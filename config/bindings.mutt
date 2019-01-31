@@ -13,6 +13,7 @@ bind attach <esc>r reply
 bind attach u exit
 bind attach v noop # Normally <collapse-parts>, we use <tab> instead.
 bind attach,compose,index,pager | noop # Normally <pipe-entry> or <pipe-message>.
+bind attach,compose | pipe-entry
 bind attach,index L bottom-page # Normally <list-reply>.
 bind attach,index,pager <Esc>P noop # Normally <check-traditional-pgp>.
 bind attach,index,pager \CB noop # Normally bound to show URLs with `urlview`.

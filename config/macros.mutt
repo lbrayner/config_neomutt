@@ -1,24 +1,24 @@
 macro compose <esc>5 \
 "F pandoc --template=mail --quiet -f markdown_strict -t html\
-\ny^t<esc>b^b^b<esc><BackSpace>html<enter>"
+\ny^t<esc>b^b^b^whtml<enter>"
 
 macro compose <esc>4 \
 "F pandoc --template=mail --quiet -t markdown -f html\
-\ny^t<esc>b^b^b<esc><BackSpace>plain<enter>"
+\ny^t<esc>b^b^b^wplain<enter>"
 
 macro compose <esc>3 "F pandoc -s --quiet -f markdown_strict -t plain \ny"
 
 macro compose <esc>2 "<previous-entry><tag-entry><next-entry><tag-entry><group-alternatives>"
 
 macro compose <esc>1 \
-"<pipe-entry>mail2html > /tmp/neomutt-alternative<enter>\
+"<pipe-entry>mail2html /tmp/neomutt-alternative<enter>\
 <attach-file>/tmp/neomutt-alternative<enter><toggle-unlink>\
-^t<esc>b^b^b<esc><BackSpace>html<enter>"
+^t<esc>b^b^b^whtml<enter>"
 
 macro compose <esc>0 \
 "<pipe-entry>text2html > /tmp/neomutt-alternative<enter>\
 <attach-file>/tmp/neomutt-alternative<enter><toggle-unlink>\
-^t<esc>b^b^b<esc><BackSpace>html<enter>"
+^t<esc>b^b^b^whtml<enter>"
 
 macro index,pager T0 "<shell-escape>rm -f ~/.cache/\$MUTT_CACHE/mutt_search_results<enter>"
 
