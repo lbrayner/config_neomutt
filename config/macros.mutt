@@ -25,6 +25,8 @@ macro index,pager T0 "<shell-escape>rm -f \$MUTT_CACHE/mutt_search_results<enter
 macro index,pager gi "T0T1<change-folder>!<enter>gt" "go to inbox"
 macro index,pager gr "T0T2<change-folder><<enter>gt" "go to record"
 
+macro editor <esc><BackSpace> "^w"
+
 macro index,pager | "<pipe-message>" "pipe message to..."
 macro index,pager W "<pipe-message>cat > " "save [O]riginal message"
 macro index,pager X "<pipe-message>ripmime --no-nameless -i - -d " "unpack attachments"
