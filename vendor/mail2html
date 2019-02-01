@@ -4,22 +4,20 @@
 # Linebreaks preserved in replies
 # No signaure: it's in pandoc's template (mail)
 
-print_usage() {
-	printf '\n%s\n' "$(basename $0) FILE"
-}
+# print_usage() {
+# 	printf '\n%s\n' "$(basename $0) FILE"
+# }
 
-if [ ! ${#} -eq 1 ]
-then
-	print_usage
-	exit 1
-fi
+# if [ ! ${#} -eq 1 ]
+# then
+# 	print_usage
+# 	exit 1
+# fi
 
-file="${1}"
-whoami > /tmp/whoami
+# file="${1}"
 
-<&0 tee /tmp/original | sed -E -e '/> -- ?$/,/> ?$/ s/>( |( >)+)/&    /' \
+<&0 sed -E -e '/> -- ?$/,/> ?$/ s/>( |( >)+)/&    /' \
     -e '/On .* wrote:$/,$ s/.+/&  /' \
     -e '/^-- $/q' \
     | head -n -1 \
-    | pandoc --quiet --template=mail -f markdown_strict+pipe_tables -t html \
-        -o "${file}"
+    | pandoc --quiet --template=mail -f markdown_strict+pipe_tables -t html
