@@ -1,11 +1,11 @@
 #!/bin/bash
 
-if [[ -f ~/.cache/$MUTT_CACHE/mutt_search_abort ]]
+if [[ -f $MUTT_CACHE/mutt_search_abort ]]
 then
     exit 0
 fi
 
-if [[ -f ~/.cache/$MUTT_CACHE/mutt_limit_pattern  ]]
+if [[ -f $MUTT_CACHE/mutt_limit_pattern  ]]
 then
-    cat ~/.cache/$MUTT_CACHE/mutt_limit_pattern
+    cat $MUTT_CACHE/mutt_limit_pattern
 fi

@@ -1,4 +1,4 @@
-source 'printf "set my_mutt_terms=\"$(cat ~/.cache/$MUTT_CACHE/mutt_terms)\"" |'
+source 'printf "set my_mutt_terms=\"$(cat $MUTT_CACHE/mutt_terms)\"" |'
 
 # performs the latest search
 macro index S "<limit>`mutt_notmuch_limit`<enter>\
