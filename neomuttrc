@@ -22,6 +22,9 @@ set mail_check_stats
 # message/rfc822 MIME part instead of included in the main body of the message. 
 set mime_forward=ask-yes
 
+# Controls whether or not Mutt includes only the first attachment of the message you are replying. 
+set include_onlyfirst=yes
+
 # This quadoption controls whether or not the user is automatically placed in
 # the editor when forwarding messages.
 set forward_edit=no
