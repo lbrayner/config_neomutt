@@ -100,4 +100,7 @@ bind pager k previous-line
 bind pager o noop # Normally <sort-mailbox>.
 bind pager u exit
 
+# notmuch
+bind index <esc>n vfolder-from-query
+
 # vim:ft=muttrc

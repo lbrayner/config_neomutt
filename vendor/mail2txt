@@ -34,10 +34,22 @@ def decode_pair(pair):
 headers = ['Date','From','To','Cc','Subject']
 
 def mail2txt(file):
+    no_text_plain_error_message = 'This message does not contain a plaintext part.'
+
     message = email.message_from_file(file,_class=EmailMessage)
 
     if message.get_default_type() != 'text/plain':
-        raise ValueError('This message does not contain a plaintext part.')
+        raise ValueError(no_text_plain_error_message)
+
+    has_text_plain = False
+
+    for part in message.walk():
+        if part.get_content_type() == message.get_default_type():
+            has_text_plain = True
+            break
+
+    if not has_text_plain:
+        raise ValueError(no_text_plain_error_message)
 
     for header in headers:
         if header not in message:
