@@ -9,6 +9,8 @@ source $HOME/.config/neomutt/config/settings.mutt
 
 source $HOME/.config/neomutt/neomuttrc.local
 
+source $HOME/.config/neomutt/config/notmuch.mutt
+
 # The sidebar shows a list of all your mailboxes. 
 set sidebar_visible
 set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
@@ -64,7 +66,7 @@ set edit_headers=yes
 set wait_key=no
 set sleep_time = 0 # be fast
 
-set index_format="%4C %Z %X %b %d %-15.15L %s"
+set index_format="%4C %Z %X %d %-15.15L %s"
 set date_format="%a %Y %b %e %Hh%M"
 
 alternative_order text/plain text/html

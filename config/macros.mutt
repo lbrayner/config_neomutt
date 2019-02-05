@@ -20,10 +20,10 @@ macro compose <esc>0 \
 <attach-file>$MUTT_CACHE/neomutt-alternative<enter><toggle-unlink>\
 ^t<esc>b^b^b^whtml<enter>"
 
-macro index,pager T0 "<shell-escape>rm -f \$MUTT_CACHE/mutt_search_results<enter>"
+macro index,pager T0 "<enter-command>source $HOME/.config/neomutt/config/notmuch.mutt<enter>"
 
-macro index,pager gi "T0T1<change-folder>!<enter>gt" "go to inbox"
-macro index,pager gr "T0T2<change-folder><<enter>gt" "go to record"
+macro index,pager gi "T1T0<change-folder>!<enter>" "go to inbox"
+macro index,pager gr "T2T0<change-folder><<enter>" "go to record"
 
 macro editor <esc><BackSpace> "^w"
 
@@ -53,18 +53,7 @@ macro index U "<tag-prefix><set-flag>N" "mark as unread"
 macro pager I <clear-flag>N "mark as read"
 macro index I "<tag-prefix><clear-flag>N" "mark as read"
 
-macro index,pager <F11> '<enter-command>echo "notmuch: Found \
-$my_mutt_search_count message(s). [$my_mutt_terms]"<enter>'
 macro index,pager <F12> "<enter-command>echo $MUTT_CACHE<enter>" "Displays $MUTT_CACHE"
-
-macro index gt "<shell-escape>mutt_notmuch_results_forward<enter>\
-<enter-command>source $HOME/.config/neomutt/config/limit.mutt<enter>S\
-<enter-command>source $HOME/.config/neomutt/config/count.mutt<enter>S"
-
-# macro '/' performs a notmuch query and limits to the latest results
-# macro 'gt' paginates the last not much query
-# macro 'S' executes the limit command, defined in limit.mutt
-macro index / "<enter-command>unset wait_key<enter><shell-escape>mutt_notmuch_query<enter>gt"
 
 # 'A' shows all messages again
 macro index A "<limit>all\n"
