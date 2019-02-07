@@ -29,5 +29,6 @@ then
 fi
 
 mail2txt "${redir}" > "${tmpfile}"
+dos2unix -f "${tmpfile}"
 rm -f "${redir}"
 text_mailcap "${tmpfile}"

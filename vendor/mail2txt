@@ -61,13 +61,15 @@ def mail2txt(file):
 
     print()
 
+    to_decode = set(["base64","quoted-printable"])
+
     for part in message.walk():
         if part.get_content_type() != message.get_default_type():
             continue
 
         content_transfer_encoding = part['Content-Transfer-Encoding']
 
-        if content_transfer_encoding == "quoted-printable":
+        if content_transfer_encoding in to_decode:
             payload = part.get_payload(decode=True)
             print(payload.decode(part.get_content_charset()))
             break
