@@ -57,7 +57,7 @@ set sort_browser=date
 # When sorting by threads, this variable controls how threads are sorted in
 # relation to other threads, and how the branches of the thread trees are
 # sorted. 
-set sort_aux=last-date-received
+set sort_aux=reverse-last-date-received
 
 # This variable specifies which files to consult when attempting to display
 # MIME bodies not directly supported by Mutt.
