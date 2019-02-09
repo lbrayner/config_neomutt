@@ -70,7 +70,7 @@ set edit_headers=yes
 set wait_key=no
 set sleep_time = 0 # be fast
 
-set index_format="%4C %Z %X %d %-15.15L %s"
+set index_format="%4C %Z %3X %b %d %-15.15L %s"
 set date_format="%a %Y %b %e %Hh%M"
 
 alternative_order text/plain text/html
