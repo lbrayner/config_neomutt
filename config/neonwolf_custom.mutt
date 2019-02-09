@@ -1,0 +1,8 @@
+color indicator     white  brightcolor232                        # selected email in index
+
+color index_date         cyan        color233
+color index_author       magenta     color233     "!~F"
+# color index_author       red         color233     "~F"
+color index_flags        brightred   color233     "!~F"
+
+# vim:ft=muttrc
