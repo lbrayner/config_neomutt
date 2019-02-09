@@ -3,6 +3,7 @@
 
 source /home/desenvolvedor/.config/neomutt/submodules/\
 mutt-colors-neonwolf/mutt-colors-neonwolf-256.muttrc
+source $HOME/.config/neomutt/config/neonwolf_custom.mutt
 source $HOME/.config/neomutt/config/bindings.mutt
 source $HOME/.config/neomutt/config/macros.mutt
 source $HOME/.config/neomutt/config/settings.mutt
@@ -18,6 +19,14 @@ set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
 # set status_format="-%r-NeoMutt: %D [Msgs:%?M?%M/?%m%?n? \
 # New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? \
 # Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---"
+
+# This variable allows you to customize the message index display to your
+# personal taste.
+# ASCII
+set index_format="%4C %Z %?X?%2X&  ? %b %d %-15.15L %s"
+# This variable controls the format of the date printed by the “%d” sequence in
+# $index_format.
+set date_format="%a %Y %b %e %Hh%M"
 
 # When set, mutt will periodically calculate message statistics of a mailbox
 # while polling for new mail. It will check for unread, flagged, and total
@@ -70,13 +79,13 @@ set edit_headers=yes
 set wait_key=no
 set sleep_time = 0 # be fast
 
-set index_format="%4C %Z %3X %b %d %-15.15L %s"
-set date_format="%a %Y %b %e %Hh%M"
-
+# Mutt has some heuristics for determining which attachment of a
+# multipart/alternative type to display:
+# First, Mutt will check the alternative_order list to determine if one of the
+# available types is preferred
+# Next, Mutt will check if any of the types have a defined auto_view, and use
+# that.
 alternative_order text/plain text/html
 auto_view text/html
-
-# custom variables
-set my_mutt_terms=""
 
 # vim:ft=muttrc

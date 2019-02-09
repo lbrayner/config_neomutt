@@ -1,7 +1,0 @@
-macro index S "<enter-command><enter>"
-
-source 'if test -f $MUTT_CACHE/mutt_search_succeeded; \
-then printf "set my_mutt_search_count=$(cat $MUTT_CACHE/mutt_search_count)\n\
-macro index S <F11>";fi |'
-
-# vim:ft=muttrc

@@ -1,7 +1,0 @@
-source 'printf "set my_mutt_terms=\"$(cat $MUTT_CACHE/mutt_terms)\"" |'
-
-# performs the latest search
-macro index S "<limit>`mutt_notmuch_limit`<enter>\
-<shell-escape>mutt_notmuch_search_outcome<enter>"
-
-# vim:ft=muttrc
