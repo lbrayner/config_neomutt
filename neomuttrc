@@ -75,7 +75,12 @@ set sort_aux=reverse-last-date-received
 # MIME bodies not directly supported by Mutt.
 set mailcap_path=$HOME/.config/neomutt/mailcap
 
+# This option allows you to edit the header of your outgoing messages along
+# with the body of your message.
 set edit_headers=yes
+
+# The “unignore” command will make Mutt display headers with the given pattern.
+unignore bcc:
 
 # Controls whether Mutt will ask you to press a key after an external command
 # has been invoked
