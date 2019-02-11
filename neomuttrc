@@ -28,6 +28,9 @@ set index_format="%4C %Z %?X?%2X&  ? %b %d %-15.15L %s"
 # $index_format.
 set date_format="%a %Y %b %e %Hh%M"
 
+# This variable describes the format of the “attachment”.
+set attach_format="%u%D%I %t%4n %T%.d%> [%m/%.10M, %e%?C?, %C?, %s]"
+
 # When set, mutt will periodically calculate message statistics of a mailbox
 # while polling for new mail. It will check for unread, flagged, and total
 # message counts.
@@ -78,6 +81,12 @@ set edit_headers=yes
 # has been invoked
 set wait_key=no
 set sleep_time = 0 # be fast
+
+# The “forgotten-attachment” feature provides a new setting for NeoMutt that
+# alerts the user if the message body contains a certain keyword but there are
+# no attachments added. 
+set abort_noattach = ask-yes
+set abort_noattach_regex = "\\<(attach|attached|attaching|attachments?)\\>|\\<anex"
 
 # Mutt has some heuristics for determining which attachment of a
 # multipart/alternative type to display:
