@@ -15,8 +15,9 @@ ping -q -w 1 -c 1 `ip r | grep -m 1 default | cut -d ' ' -f 3` >/dev/null || exi
 # ping -q -w 1 -c 1 8.8.8.8 >/dev/null || exit
 
 notify() {
-    notify-send -i ~/.config/mutt/etc/email.gif \
-        "$2 new message(s) in \`$1\` account." ;
+    notify-send -i ~/.config/neomutt/share/email.gif \
+        "$2 new message(s) in \`$1\` account."
+    # notify-send "$2 new message(s) in \`$1\` account."
 }
 
 # echo 🔃 > ~/.config/mutt/.dl
