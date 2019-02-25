@@ -5,7 +5,7 @@ text/plain; text_mailcap -c %{charset} %s
 
 multipart/alternative; text_mailcap %s
 
-image/*; feh %s >/dev/null 2>&1; test=test -n "$DISPLAY"
+image/*; sxiv %s >/dev/null 2>&1; test=test -n "$DISPLAY"
 
 application/pdf; mupdf %s >/dev/null 2>&1; test=test -n "$DISPLAY"
 
