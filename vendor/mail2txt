@@ -31,7 +31,7 @@ def decode_pair(pair):
 
     return decoded_string.decode(charset)
 
-headers = ['Date','From','To','Cc','Subject']
+headers = ['Date','From','To','Cc','Bcc','Subject']
 
 def mail2txt(file):
     no_text_plain_error_message = 'This message does not contain a plaintext part.'
