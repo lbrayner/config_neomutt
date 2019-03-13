@@ -28,7 +28,7 @@ then
     iconvert -B -f latin1 -t utf-8 "${redir}"
 fi
 
-mail2txt "${redir}" > "${tmpfile}"
+mail2txt --redact-addresses "${redir}" > "${tmpfile}"
 dos2unix -f "${tmpfile}"
 rm -f "${redir}"
 text_mailcap "${tmpfile}"

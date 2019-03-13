@@ -3,6 +3,7 @@
 import sys
 import os
 import re
+import argparse
 
 import email
 from email.message import EmailMessage
@@ -14,11 +15,14 @@ args = sys.argv[1:]
 def usage():
     return "%s FILE\n" % os.path.basename(script)
 
-if len(args) != 1:
-    sys.stderr.write(usage())
-    sys.exit(1)
+parser = argparse.ArgumentParser(description='Convert a mail file to text.')
+parser.add_argument('--redact-addresses',dest='redact',action='store_true')
+parser.add_argument('file')
 
-arg = args[0]
+args = parser.parse_args()
+
+arg = args.file
+redact = args.redact
 
 def decode_pair(pair):
     decoded_string = pair[0]
@@ -68,7 +72,12 @@ def mail2txt(file):
 
         header_list_pair = decode_header(message[header])
         decoded_mime_header = "".join([*map(lambda x: decode_pair(x),header_list_pair)])
-        print("%s: %s" % (header,redact_address(decoded_mime_header)))
+        mime_header = decoded_mime_header
+
+        if redact:
+            mime_header = redact_address(mime_header)
+
+        print("%s: %s" % (header,mime_header))
 
     print()
 
@@ -88,10 +97,10 @@ def mail2txt(file):
         print(part.get_payload())
         break
 
-    print("---------- HEADERS ----------")
-
-    for entry in  message.items():
-        print("{}: {}".format(entry[0], redact_address(entry[1])))
+    if not redact:
+        print("---------- HEADERS ----------")
+        for entry in  message.items():
+            print("{}: {}".format(entry[0], entry[1]))
 
 if arg == "-":
     mail2txt(sys.stdin) # '-' reads from standard input
