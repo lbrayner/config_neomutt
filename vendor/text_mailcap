@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # set -x
 
@@ -24,7 +24,7 @@ do
 done
 shift $((OPTIND - 1))
 
-if [ ! ${#} -eq 1 ]
+if [[ ! ${#} -eq 1 ]]
 then
 	print_usage
 	exit 1
@@ -49,25 +49,32 @@ cp -f "${tmpfile}" "${copy}"
 
 encoding=$(vim_encoding "${charset}")
 
-if [ -n "$TMUX" ]
+vim=nvim
+
+if [[ "${EDITOR%vim}" != "${EDITOR}" ]]
+then
+    vim="${EDITOR}"
+fi
+
+if [[ -n "$TMUX" ]]
 then
     columns=`tput cols`
-    if [ ${columns} -gt 180 ]
+    if [[ ${columns} -gt 180 ]]
     then
         tmux split-window -p 50 -h \
-            nvim -R "+set fileencoding=${encoding}" '+set nomodified' \
+            ${vim} -R "+set fileencoding=${encoding}" '+set nomodified' \
             '+set filetype=mail' '+set nofoldenable' '+set nomodifiable' \
             '+set buftype=nofile' "${copy}"
         exit 0
     fi
     tmux split-window -p 50 -v \
-        nvim -R "+set fileencoding=${encoding}" '+set nomodified' '+set filetype=mail' \
+        ${vim} -R "+set fileencoding=${encoding}" '+set nomodified' '+set filetype=mail' \
         '+set nofoldenable' '+set nomodifiable' '+set buftype=nofile' "${copy}"
     exit 0
 fi
-if [ -n "${DISPLAY}" ]
+if [[ -n "${DISPLAY}" ]]
 then
-    urxvt -e $SHELL -c "nvim -R \"+set fileencoding=${encoding}\" '+set nomodified' \
+    urxvt -e $SHELL -c "${vim} -R \"+set fileencoding=${encoding}\" '+set nomodified' \
         '+set filetype=mail' '+set nofoldenable' '+set nomodifiable' '+set buftype=nofile' \
         ${copy}" >/dev/null 2>&1 &
     exit 0
