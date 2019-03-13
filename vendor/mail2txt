@@ -2,6 +2,7 @@
 
 import sys
 import os
+import re
 
 import email
 from email.message import EmailMessage
@@ -31,6 +32,16 @@ def decode_pair(pair):
 
     return decoded_string.decode(charset)
 
+def redact_address(text):
+    match = re.match(r"(.*[^a-z])?([a-z]+)@([a-z]+)\.(.+)",text)
+    if(match is None):
+        return text
+    recipient = match.group(2)
+    subdomain = match.group(3)
+    domain = match.group(4)
+    # TODO format FTW
+    return re.sub(r".","*",recipient) + "@" + re.sub(".","*",subdomain) + "." + domain
+
 headers = ['Date','From','To','Cc','Bcc','Subject']
 
 def mail2txt(file):
@@ -57,7 +68,7 @@ def mail2txt(file):
 
         header_list_pair = decode_header(message[header])
         decoded_mime_header = "".join([*map(lambda x: decode_pair(x),header_list_pair)])
-        print("%s: %s" % (header,decoded_mime_header))
+        print("%s: %s" % (header,redact_address(decoded_mime_header)))
 
     print()
 
@@ -80,7 +91,7 @@ def mail2txt(file):
     print("---------- HEADERS ----------")
 
     for entry in  message.items():
-        print("%s: %s" % entry)
+        print("{}: {}".format(entry[0], redact_address(entry[1])))
 
 if arg == "-":
     mail2txt(sys.stdin) # '-' reads from standard input
