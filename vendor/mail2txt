@@ -37,6 +37,8 @@ def decode_pair(pair):
     return decoded_string.decode(charset)
 
 def redact_address(text):
+    matches = re.findall(r"([^\s@]+)@([^\s@]+)\.([^\s]+)",text)
+    print(matches)
     match = re.match(r"(.*[^a-z])?([a-z]+)@([a-z]+)\.(.+)",text)
     if(match is None):
         return text
