@@ -4,8 +4,23 @@
 set -e
 
 print_usage() {
-	printf '\n%s\n' "$(basename $0)"
+	printf '\n%s\n' "$(basename $0) [-R]"
 }
+
+redact=""
+while getopts ":R" opt
+do
+    case ${opt} in
+        R)
+            redact="--redact-addresses"
+            ;;
+        \?)
+            echo "Invalid option: -$OPTARG" >&2 
+            exit 1
+            ;;
+    esac
+done
+shift $((OPTIND - 1))
 
 # Reads from stdin
 if [ ! ${#} -eq 0 ]
@@ -23,12 +38,12 @@ latin1(){
     file -i "${1}" | grep -q -i iso-8859-1
 }
 
-if `latin1 "${redir}"`
+if latin1 "${redir}"
 then
     iconvert -B -f latin1 -t utf-8 "${redir}"
 fi
 
-mail2txt --redact-addresses "${redir}" > "${tmpfile}"
+mail2txt ${redact} "${redir}" > "${tmpfile}"
 dos2unix -f "${tmpfile}"
 rm -f "${redir}"
 text_mailcap "${tmpfile}"
