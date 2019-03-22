@@ -2,5 +2,5 @@
 
 # Hard breaks
 
-sed -E '/^(>+ )*----- Forwarded/,/^(>+ )*Subject/ s/$/  /' /dev/stdin \
+<&0 sed -E '/^(>+ )*----- Forwarded/,/^(>+ )*Subject/ s/$/  /' \
     | mailmd2html

@@ -2,7 +2,8 @@
 
 # Email signatures in <blockquote> blocks
 
-sed -E -e '/> -- ?$/,/> ?$/ s/>( |( >)+)/&    /' \
-    -e '/^-- $/q' /dev/stdin \
+<&0 sed -E -e '/> -- ?$/,/> ?$/ s/>( |( >)+)/&    /' \
+    -e '/^-- $/q' \
     | head -n -1 \
-    | pandoc --quiet --template=mail -f markdown_strict+pipe_tables -t html
+    | pandoc --quiet --template=mail \
+    -f markdown_strict+pipe_tables+fenced_code_blocks -t html
