@@ -2,5 +2,6 @@
 
 # Hard breaks
 
-<&0 sed -E '/^(>+ )*----- Forwarded/,/^(>+ )*Subject/ s/$/  /' \
+<&0 sed -E -e '/^(>+ )*----- Forwarded/,/^(>+ )*Subject/ s/$/  /' \
+    -e '/^----- End forwarded message/q' \
     | mailmd2html
