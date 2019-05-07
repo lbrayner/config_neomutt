@@ -17,7 +17,7 @@ args = parser.parse_args()
 arg = args.file
 redact = args.redact
 
-def decode_pair(pair):
+def decode_string(pair):
     decoded_string = pair[0]
     charset = pair[1]
 
@@ -57,7 +57,7 @@ def mail2txt(file):
             continue
 
         header_list_pair = decode_header(message[header])
-        decoded_mime_header = "".join([*map(lambda x: decode_pair(x),header_list_pair)])
+        decoded_mime_header = "".join([*map(lambda x: decode_string(x),header_list_pair)])
         value = decoded_mime_header
 
         if redact:
