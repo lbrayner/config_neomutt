@@ -6,4 +6,4 @@
     -e '/> -- ?$/,/> ?$/ s/>( |( >)+)/&    /' \
     -e '/On .* wrote:$/,$ s/.+/&  /' \
     | pandoc --quiet --template=mail \
-    -f markdown_strict+pipe_tables+fenced_code_blocks -t html
+        -f markdown_strict+pipe_tables+fenced_code_blocks -t html
