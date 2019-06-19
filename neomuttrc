@@ -96,7 +96,7 @@ set sleep_time = 0 # be fast
 # alerts the user if the message body contains a certain keyword but there are
 # no attachments added. 
 set abort_noattach = ask-yes
-set abort_noattach_regex = "\\<(attach|attached|attaching|attachments?)\\>|\\<anex"
+set abort_noattach_regex = "\\<(attach|attached|attaching|attachments?)\\>|\\<anex|\\<annex"
 
 # Mutt has some heuristics for determining which attachment of a
 # multipart/alternative type to display:
