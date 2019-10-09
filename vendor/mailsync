@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # set -x
 
@@ -23,6 +23,13 @@ notify() {
 # echo 🔃 > ~/.config/mutt/.dl
 # pkill -RTMIN+12 i3blocks
 
+# Some instances get stuck due to locking issues.
+if pgrep offlineimap
+then
+    printf '\nKilling supposedly stuck offlineimap instance(s).\n\n'
+    pkill -9 offlineimap
+    sleep 1
+fi
 # Run offlineimap. You can feed this script different settings.
 offlineimap -o "$@"
 # rm -f ~/.config/mutt/.dl
