@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Email signatures in <blockquote> blocks
 # Linebreaks preserved in replies
@@ -16,9 +16,18 @@
 
 # file="${1}"
 
+# env 2>&1 > /tmp/env
+
+template="mail"
+
+if [[ -n "${MUTT_CACHE}" ]] && [[ -f "${MUTT_CACHE}/pandoc_mail_template" ]]
+then
+    template="$(cat "${MUTT_CACHE}"/pandoc_mail_template)"
+fi
+
 <&0 sed -E -e '/> -- ?$/,/> ?$/ s/>( |( >)+)/&    /' \
     -e '/On .* wrote:$/,$ s/.+/&  /' \
     -e '/^-- $/q' \
     | head -n -2 \
-    | pandoc --quiet --template=mail \
+    | pandoc --quiet --template=${template} \
     -f markdown_strict+pipe_tables+fenced_code_blocks -t html

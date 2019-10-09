@@ -1,9 +1,16 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # Email signatures in <blockquote> blocks
+
+template="mail"
+
+if [[ -n "${MUTT_CACHE}" ]] && [[ -f "${MUTT_CACHE}/pandoc_mail_template" ]]
+then
+    template="$(cat "${MUTT_CACHE}"/pandoc_mail_template)"
+fi
 
 <&0 sed -E -e '/^-- $/,/^$/ s/.+/    &/' \
     -e '/> -- ?$/,/> ?$/ s/>( |( >)+)/&    /' \
     -e '/On .* wrote:$/,$ s/.+/&  /' \
-    | pandoc --quiet --template=mail \
+    | pandoc --quiet --template=${template} \
         -f markdown_strict+pipe_tables+fenced_code_blocks -t html
