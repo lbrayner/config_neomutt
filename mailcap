@@ -7,7 +7,7 @@ multipart/alternative; text_mailcap %s
 
 image/*; sxiv %s >/dev/null 2>&1; test=test -n "$DISPLAY"
 
-application/pdf; mupdf %s >/dev/null 2>&1; test=test -n "$DISPLAY"
+application/pdf; zathura %s >/dev/null 2>&1; test=test -n "$DISPLAY"
 
 application/vnd.ms-excel; libreoffice_mailcap %s >/dev/null 2>&1; test=test -n "$DISPLAY"
 application/msword; libreoffice_mailcap %s >/dev/null 2>&1; test=test -n "$DISPLAY"
