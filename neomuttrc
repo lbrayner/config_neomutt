@@ -8,8 +8,6 @@ source $HOME/.config/neomutt/config/bindings.mutt
 source $HOME/.config/neomutt/config/macros.mutt
 source $HOME/.config/neomutt/config/settings.mutt
 
-source $HOME/.config/neomutt/neomuttrc.local
-
 source $HOME/.config/neomutt/config/notmuch.mutt
 
 # The sidebar shows a list of all your mailboxes. 
@@ -106,5 +104,8 @@ set abort_noattach_regex = "\\<(attach|attached|attaching|attachments?)\\>|\\<an
 # that.
 alternative_order text/plain text/html
 auto_view text/html
+
+# sourcing local configuration
+source $HOME/.config/neomutt/neomuttrc.local
 
 # vim:ft=muttrc
