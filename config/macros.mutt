@@ -49,4 +49,8 @@ macro index,pager <F12> "<enter-command>echo $MUTT_CACHE<enter>" "Displays $MUTT
 # 'A' shows all messages again
 macro index A "<limit>all\n"
 
+# sort
+# TODO maybe use the source trick to make it cycle among the most used options
+macro index <F8> <enter-command>set\ sort=reverse-
+
 # vim:ft=muttrc
