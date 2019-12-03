@@ -82,6 +82,11 @@ set mailcap_path=$HOME/.config/neomutt/mailcap
 # with the body of your message.
 set edit_headers=yes
 
+# When set along with $edit_headers, Mutt will skip the initial send-menu
+# (prompting for subject and recipients) and allow you to immediately begin
+# editing the body of your message. 
+set autoedit=yes
+
 # The “unignore” command will make Mutt display headers with the given pattern.
 unignore bcc:
 
