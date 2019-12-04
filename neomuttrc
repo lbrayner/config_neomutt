@@ -8,8 +8,6 @@ source $HOME/.config/neomutt/config/bindings.mutt
 source $HOME/.config/neomutt/config/macros.mutt
 source $HOME/.config/neomutt/config/settings.mutt
 
-source $HOME/.config/neomutt/config/notmuch.mutt
-
 # The sidebar shows a list of all your mailboxes. 
 set sidebar_visible
 set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
@@ -112,5 +110,8 @@ auto_view text/html
 
 # sourcing local configuration
 source $HOME/.config/neomutt/neomuttrc.local
+
+# sourcing files that depend on local configuration
+source $HOME/.config/neomutt/config/notmuch.mutt
 
 # vim:ft=muttrc
