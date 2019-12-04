@@ -1,4 +1,5 @@
-color indicator     white  brightcolor232                        # selected email in index
+# selected email in index
+color indicator     brightcolor232 white
 
 color index_date         cyan        color233
 color index_author       magenta     color233     "!~F"
