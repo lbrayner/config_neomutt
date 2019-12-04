@@ -9,6 +9,10 @@ then
     template="$(cat "${MUTT_CACHE}"/pandoc_mail_template)"
 fi
 
+# Signatures: monospaced font and preformatted
+# Cited email signatures: preformatted
+# Forwarded by mutt: preformatted
+
 <&0 sed -E -e '/^-- $/,/^$/ s/.+/    &/' \
     -e '/> -- ?$/,/> ?$/ s/>( |( >)+)/&    /' \
     -e '/On .* wrote:$/,$ s/.+/&  /' \

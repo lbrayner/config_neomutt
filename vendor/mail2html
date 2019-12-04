@@ -4,26 +4,16 @@
 # Linebreaks preserved in replies
 # No signaure: it's in pandoc's template (mail)
 
-# print_usage() {
-# 	printf '\n%s\n' "$(basename $0) FILE"
-# }
-
-# if [ ! ${#} -eq 1 ]
-# then
-# 	print_usage
-# 	exit 1
-# fi
-
-# file="${1}"
-
-# env 2>&1 > /tmp/env
-
 template="mail"
 
 if [[ -n "${MUTT_CACHE}" ]] && [[ -f "${MUTT_CACHE}/pandoc_mail_template" ]]
 then
     template="$(cat "${MUTT_CACHE}"/pandoc_mail_template)"
 fi
+
+# Cited email signatures preformatted
+# Forwarded by mutt preformatted
+# Quit on finding signature
 
 <&0 sed -E -e '/> -- ?$/,/> ?$/ s/>( |( >)+)/&    /' \
     -e '/On .* wrote:$/,$ s/.+/&  /' \
