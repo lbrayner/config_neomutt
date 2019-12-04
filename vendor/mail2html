@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Email signatures in <blockquote> blocks
-# Linebreaks preserved in replies
+#
 # No signaure: it's in pandoc's template (mail)
 
 template="mail"
@@ -11,12 +11,12 @@ then
     template="$(cat "${MUTT_CACHE}"/pandoc_mail_template)"
 fi
 
-# Cited email signatures preformatted
-# Forwarded by mutt preformatted
+# Cited email signatures: preformatted
+# Keywords preformatted
 # Quit on finding signature
 
 <&0 sed -E -e '/> -- ?$/,/> ?$/ s/>( |( >)+)/&    /' \
-    -e '/On .* wrote:$/,$ s/.+/&  /' \
+    -e 's/^[ \t]*[A-Z]\w+( \w+)?:.*/&  /' \
     -e '/^-- $/q' \
     | head -n -2 \
     | pandoc --quiet --template=${template} \
