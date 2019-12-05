@@ -16,10 +16,13 @@ fi
 # Signatures: monospaced font and with line breaks
 # Quit on finding last signature
 
-<&0 sed -n -E -e '/> -- ?$/,/> ?$/ s/>( |( >)+)/&    /p' -e t \
-    -e 's/^(>( |( >)+))*[A-Z]\w*(-\w+)*( \w+)?:.*/&  /p' -e t \
+<&0 sed -n -E \
     -e '/^-- $/,/^$/ s/.+/    &/' \
-    -e '/^    -- $/,/^$/{H;/^    -- $/h;/^$/{g;p;T}}' \
-    -e t -e p \
+    -e '/^    -- $/,/^$/{H;/^    -- $/h;/^$/{g;p;T}}' -e t \
+    -e '/> -- ?$/,/> ?$/ s/>( |( >)+)/&    /p' -e t \
+    -e 'N; /.+\n(>( |( >)+))*[A-Z]\w*(-\w+)*( \w+)?:.+\w+.*/ {s/\n|$/  &/gp;D}; P; D' \
     | pandoc --quiet --template=${template} \
     -f markdown_strict+pipe_tables+fenced_code_blocks -t html
+
+    # -e 'N; P; D' -e t \
+    # -e 's/^(>( |( >)+))*[A-Z]\w*(-\w+)*( \w+)?:..+\w+.*/&  /p' -e t \
