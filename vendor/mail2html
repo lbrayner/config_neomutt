@@ -11,13 +11,15 @@ then
     template="$(cat "${MUTT_CACHE}"/pandoc_mail_template)"
 fi
 
-# Cited email signatures: preformatted
-# Keywords preformatted
-# Quit on finding signature
+# Cited email signatures: with line breaks
+# Keywords: with line breaks
+# Signatures: monospaced font and with line breaks
+# Quit on finding last signature
 
-<&0 sed -E -e '/> -- ?$/,/> ?$/ s/>( |( >)+)/&    /' \
-    -e 's/^[ \t]*[A-Z]\w+( \w+)?:.*/&  /' \
-    -e '/^-- $/q' \
-    | head -n -2 \
+<&0 sed -n -E -e '/> -- ?$/,/> ?$/ s/>( |( >)+)/&    /p' -e t \
+    -e 's/^(>( |( >)+))*[A-Z]\w*(-\w+)*( \w+)?:.*/&  /p' -e t \
+    -e '/^-- $/,/^$/ s/.+/    &/' \
+    -e '/^    -- $/,/^$/{H;/^    -- $/h;/^$/{g;p;T}}' \
+    -e t -e p \
     | pandoc --quiet --template=${template} \
     -f markdown_strict+pipe_tables+fenced_code_blocks -t html
