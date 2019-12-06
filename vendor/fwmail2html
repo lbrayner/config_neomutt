@@ -16,7 +16,9 @@ fi
 # Quit on finding signature
 
 <&0 sed -n -E \
+    -e '1{h; T}' \
     -e '/^----- End forwarded message/{x; s/\n|$/  &/gp}' \
+    -e '${x; P}' \
     -e t -e H
     # -e p
     # | pandoc --quiet --template=${template} \
