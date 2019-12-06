@@ -20,9 +20,9 @@ fi
     -e '/^-- $/,/^$/ s/.+/    &/' \
     -e '/^    -- $/,/^$/{H;/^    -- $/h;/^$/{g;p;T}}' -e t \
     -e '/> -- ?$/,/> ?$/ s/>( |( >)+)/&    /p' -e t \
-    -e 'N; /.+\n(>( |( >)+))*[A-Z]\w*(-\w+)*( \w+)?: .*/ {s/\n|$/  &/gp;D}; P; D' \
-    | pandoc --quiet --template=${template} \
-    -f markdown_strict+pipe_tables+fenced_code_blocks -t html
+    -e 'N; /.+\n(>( |( >)+))*[A-Z]\w*(-\w+)*( \w+)?: .*/ {s/\n|$/  &/gp;D}; P; D'
+    # | pandoc --quiet --template=${template} \
+    # -f markdown_strict+pipe_tables+fenced_code_blocks -t html
 
     # -e 'N; P; D' -e t \
     # -e 's/^(>( |( >)+))*[A-Z]\w*(-\w+)*( \w+)?:..+\w+.*/&  /p' -e t \
