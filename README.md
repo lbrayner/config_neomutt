@@ -3,7 +3,7 @@
 I use [my own
 fork](https://github.com/lbrayner/neomutt/tree/description) of neomutt
 with prettier virtual folder names for *notmuch* searches, both in the **index
-display** and the **status line**.
+display** (for each message in the index) and the **status line** (at the bottom).
 
 This is what a *notmuch* query looks like upstream:
 
