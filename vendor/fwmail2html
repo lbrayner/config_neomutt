@@ -1,7 +1,24 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-# Hard breaks
+# Email signatures in <blockquote> blocks
+# Linebreaks preserved in replies
+# No signaure: it's in pandoc's template (mail)
 
-<&0 sed -E -e '/^(>+ )*----- Forwarded/,/^(>+ )*Subject/ s/$/  /' \
-    -e '/^----- End forwarded message/q' \
-    | mailmd2html
+template="mail"
+
+if [[ -n "${MUTT_CACHE}" ]] && [[ -f "${MUTT_CACHE}/pandoc_mail_template" ]]
+then
+    template="$(cat "${MUTT_CACHE}"/pandoc_mail_template)"
+fi
+
+# Cited email signatures preformatted
+# Forwarded by mutt preformatted
+# Quit on finding signature
+
+<&0 sed -n -E \
+    -e '/^----- End forwarded message/{x; s/\n|$/  &/gp}' \
+    -e t -e H
+    # -e p
+    # | pandoc --quiet --template=${template} \
+    # -f markdown_strict+pipe_tables+fenced_code_blocks -t html
+    # -e '/^----- Forwarded/,/^----- End forwarded message/ s/.+/&  /p' -e t \
