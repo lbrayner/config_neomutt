@@ -17,6 +17,7 @@ fi
 
 <&0 sed -n -E -e '/> -- ?$/,/> ?$/ s/>( |( >)+)/&    /p' -e t \
     -e '/On .* wrote:$/,/^$/ s/.+/&  /p' -e t \
+    -e '/^-- $/q' \
     -e p \
     | pandoc --quiet --template=${template} \
     -f markdown_strict+pipe_tables+fenced_code_blocks -t html
