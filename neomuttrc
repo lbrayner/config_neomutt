@@ -20,7 +20,7 @@ Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---"
 # This variable allows you to customize the message index display to your
 # personal taste.
 # ASCII
-set index_format="%4C %Z %?X?%2X&  ? %b %d %-15.15L %s"
+set index_format="%4C %Z %?X?%2X&  ? %b %D %-15.15L %s"
 # This variable controls the format of the date printed by the “%d” sequence in
 # $index_format.
 set date_format="%a %Y %b %e %Hh%M"
