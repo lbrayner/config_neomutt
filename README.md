@@ -1,7 +1,7 @@
 ![Screenshot](https://user-images.githubusercontent.com/5733531/70292866-2cbc8980-17be-11ea-9007-892523e8c40a.png)
 
 I use [my own
-fork](https://github.com/lbrayner/neomutt/tree/description) of neomutt
+fork](https://github.com/lbrayner/neomutt/tree/nm_pretty) of neomutt
 with prettier virtual folder names for *notmuch* searches, both in the **index
 display** (for each message in the index) and the **status line** (at the bottom).
 
