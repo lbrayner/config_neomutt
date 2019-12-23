@@ -8,7 +8,7 @@ source $HOME/.config/neomutt/config/bindings.mutt
 source $HOME/.config/neomutt/config/macros.mutt
 source $HOME/.config/neomutt/config/settings.mutt
 
-# The sidebar shows a list of all your mailboxes. 
+# The sidebar shows a list of all your mailboxes.
 set sidebar_visible
 set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
 
@@ -38,10 +38,10 @@ set pager_format="-%Z- %C/%m: %D %.40n   \"%s\" %*  -- (%P)"
 set mail_check_stats
 
 # When set, the message you are forwarding will be attached as a separate
-# message/rfc822 MIME part instead of included in the main body of the message. 
+# message/rfc822 MIME part instead of included in the main body of the message.
 set mime_forward=ask-yes
 
-# Controls whether or not Mutt includes only the first attachment of the message you are replying. 
+# Controls whether or not Mutt includes only the first attachment of the message you are replying.
 set include_onlyfirst=yes
 
 # This quadoption controls whether or not the user is automatically placed in
@@ -50,7 +50,7 @@ set forward_edit=no
 
 # When set, the initial prompt for recipients and subject are skipped when
 # replying to messages, and the initial prompt for subject is skipped when
-# forwarding messages. 
+# forwarding messages.
 set fast_reply=yes
 
 # When this variable is set, Mutt will decode RFC2047-encoded MIME parameters.
@@ -69,7 +69,7 @@ set sort_browser=date
 
 # When sorting by threads, this variable controls how threads are sorted in
 # relation to other threads, and how the branches of the thread trees are
-# sorted. 
+# sorted.
 set sort_aux=reverse-last-date-received
 
 # This variable specifies which files to consult when attempting to display
@@ -82,7 +82,7 @@ set edit_headers=yes
 
 # When set along with $edit_headers, Mutt will skip the initial send-menu
 # (prompting for subject and recipients) and allow you to immediately begin
-# editing the body of your message. 
+# editing the body of your message.
 set autoedit=yes
 
 # The “unignore” command will make Mutt display headers with the given pattern.
@@ -95,7 +95,7 @@ set sleep_time = 0 # be fast
 
 # The “forgotten-attachment” feature provides a new setting for NeoMutt that
 # alerts the user if the message body contains a certain keyword but there are
-# no attachments added. 
+# no attachments added.
 set abort_noattach = ask-yes
 set abort_noattach_regex = "\\<(attach|attached|attaching|attachments?)\\>|\\<anex|\\<annex"
 
