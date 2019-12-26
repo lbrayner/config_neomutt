@@ -1,0 +1,54 @@
+#!/usr/bin/env python3
+
+import sys
+import re
+import argparse
+
+import email
+from email.message import EmailMessage
+from email.header import decode_header
+
+parser = argparse.ArgumentParser(description='Extract headers from mail')
+parser.add_argument('--redact-addresses',dest='redact',action='store_true')
+parser.add_argument('file')
+
+args = parser.parse_args()
+
+arg = args.file
+redact = args.redact
+
+def decode_string(pair):
+    decoded_string = pair[0]
+    charset = pair[1]
+
+    if charset is None:
+        if isinstance(decoded_string, bytes):
+            return decoded_string.decode("ascii")
+        else:
+            return decoded_string
+
+    return decoded_string.decode(charset)
+
+def redact_addresses(text):
+    return re.sub(r"(\w)[^\s@]+@(.)[^\s@]*\.([^\s]+\w)",r"\1-----@\2-----.\3",text)
+
+def mail2headers(file):
+    message = email.message_from_file(file,_class=EmailMessage)
+
+    for entry in  message.items():
+        header = entry[0]
+        header_list_pair = decode_header(message[header])
+        decoded_mime_header = "".join([*map(lambda x: decode_string(x),header_list_pair)])
+        value = decoded_mime_header
+
+        if redact:
+            value = redact_addresses(value)
+
+        print("%s: %s" % (header,value))
+
+if arg == "-":
+    mail2headers(sys.stdin) # '-' reads from standard input
+    sys.exit(0)
+
+file_to_parse = open(arg)
+mail2headers(file_to_parse)

@@ -88,11 +88,6 @@ def mail2txt(file):
 
         break
 
-    if not redact:
-        print("---------- HEADERS ----------")
-        for entry in  message.items():
-            print("{}: {}".format(entry[0], entry[1]))
-
 if arg == "-":
     mail2txt(sys.stdin) # '-' reads from standard input
     sys.exit(0)

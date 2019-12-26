@@ -1,21 +1,25 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # set -x
 set -e
 
 print_usage() {
-	printf '\n%s\n' "$(basename $0) [-R]"
+	printf '\n%s\n' "$(basename $0) [-H] [-R]"
 }
 
+headers=""
 redact=""
-while getopts ":R" opt
+while getopts ":HR" opt
 do
     case ${opt} in
+        H)
+            headers="true"
+            ;;
         R)
-            redact="--redact-addresses"
+            redact="--redact-headers"
             ;;
         \?)
-            echo "Invalid option: -$OPTARG" >&2 
+            echo "Invalid option: -$OPTARG" >&2
             exit 1
             ;;
     esac
@@ -23,9 +27,9 @@ done
 shift $((OPTIND - 1))
 
 # Reads from stdin
-if [ ! ${#} -eq 0 ]
+if [[ ! ${#} -eq 0 ]]
 then
-	print_usage
+	print_usage 1>&2
 	exit 1
 fi
 
@@ -43,7 +47,14 @@ then
     iconvert -B -f latin1 -t utf-8 "${redir}"
 fi
 
-mail2txt ${redact} "${redir}" > "${tmpfile}"
+program="mail2txt"
+
+if [[ -n "${headers}" ]]
+then
+    program="mail2headers"
+fi
+
+"${program}" ${redact} "${redir}" > "${tmpfile}"
 dos2unix -f "${tmpfile}"
 rm -f "${redir}"
 text_mailcap "${tmpfile}"

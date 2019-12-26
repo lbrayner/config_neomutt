@@ -22,6 +22,7 @@ macro index,pager W "<pipe-message>cat > " "save [O]riginal message"
 macro index,pager X "<pipe-message>ripmime --no-nameless -i - -d " "unpack attachments"
 macro index,pager M "<pipe-message>async_view<enter>" "View message asynchronously"
 macro index,pager <esc>R "<pipe-message>async_view -R<enter>" "View redacted asynchronously"
+macro pager H "<pipe-message>async_view -H<enter>" "View headers asynchronously"
 
 # Select all.
 macro index *a "<tag-pattern>~A<enter>" "select all"
