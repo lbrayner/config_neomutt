@@ -33,18 +33,19 @@ then
 	exit 1
 fi
 
-redir=$(mktemp --suffix=_mutt)
-tmpfile=$(mktemp --suffix=_mutt)
+tempdir=$(mktemp -d --suffix=_mutt)
+rfc822="${tempdir}/rfc822.eml"
+text="${tempdir}/text.eml"
 
-cat <&0 > "${redir}"
+cat <&0 > "${rfc822}"
 
 latin1(){
     file -i "${1}" | grep -q -i iso-8859-1
 }
 
-if latin1 "${redir}"
+if latin1 "${rfc822}"
 then
-    iconvert -B -f latin1 -t utf-8 "${redir}"
+    iconvert -B -f latin1 -t utf-8 "${rfc822}"
 fi
 
 program="mail2txt"
@@ -54,7 +55,15 @@ then
     program="mail2headers"
 fi
 
-"${program}" ${redact} "${redir}" > "${tmpfile}"
-dos2unix -f "${tmpfile}"
-rm -f "${redir}"
-text_mailcap "${tmpfile}"
+"${program}" ${redact} "${rfc822}" > "${text}"
+
+# Last line discarded
+if [[ -z "${headers}" ]]
+then
+    full_text="${tempdir}/full_text.eml"
+    cp -f "${text}" "${full_text}"
+    head -n -1 < "${full_text}" > "${text}"
+fi
+
+dos2unix -f "${text}"
+text_mailcap "${text}"

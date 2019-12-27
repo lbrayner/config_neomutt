@@ -26,7 +26,7 @@ shift $((OPTIND - 1))
 
 if [[ ! ${#} -eq 1 ]]
 then
-	print_usage
+	print_usage 1>&2
 	exit 1
 fi
 
@@ -42,10 +42,8 @@ vim_encoding(){
 tmpfile="${1}"
 
 # Need to copy the file because mutt will delete it before Vim can read it.
-dir=$(mktemp -d --suffix=_mutt)
-name="$(basename "${tmpfile}")"
-copy="${dir}/${name}"
-cp -f "${tmpfile}" "${copy}"
+eml=$(mktemp --suffix=_mutt)
+cp -f "${tmpfile}" "${eml}"
 
 encoding=$(vim_encoding "${charset}")
 
@@ -64,18 +62,18 @@ then
         tmux split-window -p 50 -h \
             ${vim} -R "+set fileencoding=${encoding}" '+set nomodified' \
             '+set filetype=mail' '+set nofoldenable' '+set nomodifiable' \
-            '+set buftype=nofile' "${copy}"
+            '+set buftype=nofile' "${eml}"
         exit 0
     fi
     tmux split-window -p 50 -v \
         ${vim} -R "+set fileencoding=${encoding}" '+set nomodified' '+set filetype=mail' \
-        '+set nofoldenable' '+set nomodifiable' '+set buftype=nofile' "${copy}"
+        '+set nofoldenable' '+set nomodifiable' '+set buftype=nofile' "${eml}"
     exit 0
 fi
 if [[ -n "${DISPLAY}" ]]
 then
     urxvt -e $SHELL -c "${vim} -R \"+set fileencoding=${encoding}\" '+set nomodified' \
         '+set filetype=mail' '+set nofoldenable' '+set nomodifiable' '+set buftype=nofile' \
-        ${copy}" >/dev/null 2>&1 &
+        ${eml}" >/dev/null 2>&1 &
     exit 0
 fi
