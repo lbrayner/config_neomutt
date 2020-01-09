@@ -17,10 +17,17 @@ set status_format="-%r-NeoMutt: %D %?V?{%.35V}? [Msgs:%?M?%M/?%m%?n? \
 New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? \
 Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---"
 
-# This variable allows you to customize the message index display to your
-# personal taste.
-# ASCII
-set index_format="%4C %Z %?X?%2X&  ? %b %D %-15.15L %s"
+# A hook is a concept found in many other programs which allows you to execute
+# arbitrary commands before performing some operation. For example, you may
+# wish to tailor your configuration based upon which mailbox you are reading,
+# or to whom you are sending mail. In the Mutt world, a hook consists of a
+# regular expression or pattern along with a configuration option/command.
+
+# index_format: this variable allows you to customize the message index display
+# to your personal taste.
+folder-hook .             "set index_format='%4C %Z %?X?%2X&  ? %b %D %-15.15L %s'"
+folder-hook "notmuch://*" "set index_format='%4C %Z %?X?%2X&  ? <notmuch> %D %-15.15L %s'"
+
 # This variable controls the format of the date printed by the “%d” sequence in
 # $index_format.
 set date_format="%a %Y %b %e %Hh%M"
