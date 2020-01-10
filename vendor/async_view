@@ -57,13 +57,13 @@ fi
 
 "${program}" ${redact} "${rfc822}" > "${text}"
 
-# Last line discarded
-if [[ -z "${headers}" ]]
-then
-    full_text="${tempdir}/full_text.eml"
-    cp -f "${text}" "${full_text}"
-    head -n -1 < "${full_text}" > "${text}"
-fi
+# # Last line discarded
+# if [[ -z "${headers}" ]]
+# then
+#     full_text="${tempdir}/full_text.eml"
+#     cp -f "${text}" "${full_text}"
+#     head -n -1 < "${full_text}" > "${text}"
+# fi
 
 dos2unix -f "${text}"
 text_mailcap "${text}"
