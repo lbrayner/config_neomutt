@@ -60,20 +60,24 @@ then
     if [[ ${columns} -gt 180 ]]
     then
         tmux split-window -p 50 -h \
-            ${vim} -R "+set fileencoding=${encoding}" '+set nomodified' \
-            '+set filetype=mail' '+set nofoldenable' '+set nomodifiable' \
-            '+set buftype=nofile' "${eml}"
+            ${vim} -R "+setlocal fileencoding=${encoding}" '+setlocal nomodified' \
+            '+setlocal filetype=mail' '+setlocal nofoldenable' '+setlocal nomodifiable' \
+            '+setlocal buftype=nofile' "${eml}"
         exit 0
     fi
     tmux split-window -p 50 -v \
-        ${vim} -R "+set fileencoding=${encoding}" '+set nomodified' '+set filetype=mail' \
-        '+set nofoldenable' '+set nomodifiable' '+set buftype=nofile' "${eml}"
+        ${vim} -R "+setlocal fileencoding=${encoding}" '+setlocal nomodified' \
+        '+setlocal filetype=mail' \
+        '+setlocal nofoldenable' '+setlocal nomodifiable' \
+        '+setlocal buftype=nofile' "${eml}"
     exit 0
 fi
 if [[ -n "${DISPLAY}" ]]
 then
-    urxvt -e $SHELL -c "${vim} -R \"+set fileencoding=${encoding}\" '+set nomodified' \
-        '+set filetype=mail' '+set nofoldenable' '+set nomodifiable' '+set buftype=nofile' \
+    urxvt -e $SHELL -c "${vim} -R \"+setlocal fileencoding=${encoding}\" \
+        '+setlocal nomodified' \
+        '+setlocal filetype=mail' '+setlocal nofoldenable' \
+        '+setlocal nomodifiable' '+setlocal buftype=nofile' \
         ${eml}" >/dev/null 2>&1 &
     exit 0
 fi
