@@ -109,11 +109,6 @@ set sleep_time = 0 # be fast
 set abort_noattach = ask-yes
 set abort_noattach_regex = "\\<(attach|attached|attaching|attachments?)\\>|\\<anex|\\<annex"
 
-# Used in connection with the <pipe-message> command. When unset, Mutt will
-# pipe the messages without any preprocessing. When set, Mutt will weed headers
-# and will attempt to decode the messages first.
-set pipe_decode=yes
-
 # Mutt has some heuristics for determining which attachment of a
 # multipart/alternative type to display:
 # First, Mutt will check the alternative_order list to determine if one of the
