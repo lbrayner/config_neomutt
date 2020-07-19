@@ -1,18 +1,40 @@
-# basic colors
+#
+# BASIC COLORS
+#
 
-color normal    default       default
-color indicator brightwhite   black
-color status    brightdefault default
+color attachment red           default
+color error      brightred     default
+color hdrdefault cyan          default
+color indicator  brightwhite   black
+color markers    red           default
+color normal     default       default
+color search     brightyellow  red
+color signature  cyan          default
+color status     brightdefault default
+color tilde      default       default
+color tree       default       default
+color underline  yellow        black
 
-# index
+#
+# INDEX
+#
 
-color index green   default "~U" # unread messages
-color index magenta default "~F" # flagged messages
+color index brightgreen   default "~U" # unread messages
+color index brightmagenta default "~F" # flagged messages
 
 # color index_date         yellow        default
 color index_author  blue        default "!~F"
 color index_flags   brightwhite default "!~F"
 color index_subject yellow      default "!~F"
+
+color index_author  default default "~F"
+color index_flags   magenta default "~F"
+color index_subject magenta default "~F"
+
+color index_author  default default "~U"
+color index_flags   green   default "~U"
+color index_subject green   default "~U"
+
 
 # color index_date   brightblack white "~T"
 color index         brightblack white "~T" # tagged messages
@@ -20,10 +42,26 @@ color index_author  brightblack white "~T"
 color index_flags   brightblack white "~T"
 color index_subject brightblack white "~T"
 
+#
+# PAGER
+#
+
 # headers
 
-color hdrdefault yellow  default
-color header     magenta default "^(From|To|Cc|Bcc)"
-color header     blue    default "^(Subject|Date)"
+color header blue   default "^(From|To|Cc|Bcc)"
+color header yellow default "^(Subject|Date)"
+
+# quoted
+
+color quoted  green  default
+color quoted1 red    default
+color quoted2 yellow default
+color quoted3 green  default
+color quoted4 blue   default
+color quoted5 cyan   default
+color quoted6 yellow default
+color quoted7 red    default
+color quoted8 green  default
+color quoted9 blue   default
 
 # vim:ft=muttrc
