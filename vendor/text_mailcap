@@ -74,10 +74,10 @@ then
 fi
 if [[ -n "${DISPLAY}" ]]
 then
-    urxvt -e $SHELL -c "${vim} -R \"+setlocal fileencoding=${encoding}\" \
+    /usr/local/bin/st -u ${vim} -R "+setlocal fileencoding=${encoding}" \
         '+setlocal nomodified' \
         '+setlocal filetype=mail' '+setlocal nofoldenable' \
         '+setlocal nomodifiable' '+setlocal buftype=nofile' \
-        ${eml}" >/dev/null 2>&1 &
+        "${eml}" >/dev/null 2>&1 &
     exit 0
 fi
