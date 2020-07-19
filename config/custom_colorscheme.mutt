@@ -19,24 +19,22 @@ color underline  yellow        black
 # INDEX
 #
 
-color index brightgreen   default "~U" # unread messages
-color index brightmagenta default "~F" # flagged messages
-
 # color index_date         yellow        default
+# color index_number         yellow        default
 color index_author  blue        default "!~F"
 color index_flags   brightwhite default "!~F"
 color index_subject yellow      default "!~F"
 
-color index_author  default default "~F"
-color index_flags   magenta default "~F"
-color index_subject magenta default "~F"
+color index         brightmagenta default "~F" # flagged messages
+color index_author  default       default "~F"
+color index_flags   magenta       default "~F"
+color index_subject magenta       default "~F"
 
-color index_author  default default "~U"
-color index_flags   green   default "~U"
-color index_subject green   default "~U"
+color index         brightgreen default "~U" # unread messages
+color index_author  default     default "~U"
+color index_flags   green       default "~U"
+color index_subject green       default "~U"
 
-
-# color index_date   brightblack white "~T"
 color index         brightblack white "~T" # tagged messages
 color index_author  brightblack white "~T"
 color index_flags   brightblack white "~T"
