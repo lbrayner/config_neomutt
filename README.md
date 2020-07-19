@@ -1,5 +1,3 @@
-![Screenshot](https://user-images.githubusercontent.com/5733531/72168389-d7226080-33ab-11ea-8a38-4a99333fb58a.png)
-
 ~~I use [my own
 fork](https://github.com/lbrayner/neomutt/blob/nm_pretty/nm_pretty.md) of neomutt
 with prettier virtual folder names for *notmuch* searches, both in the **index
