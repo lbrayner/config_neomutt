@@ -1,9 +1,7 @@
 # https://github.com/wincent/wincent
 # https://github.com/LukeSmithxyz/mutt-wizard
 
-source $HOME/.config/neomutt/submodules/\
-mutt-colors-neonwolf/mutt-colors-neonwolf-256.muttrc
-source $HOME/.config/neomutt/config/neonwolf_custom.mutt
+source $HOME/.config/neomutt/config/custom_colorscheme.mutt
 source $HOME/.config/neomutt/config/bindings.mutt
 source $HOME/.config/neomutt/config/macros.mutt
 source $HOME/.config/neomutt/config/settings.mutt
@@ -28,8 +26,8 @@ Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---"
 
 # index_format: this variable allows you to customize the message index display
 # to your personal taste.
-folder-hook .             "set index_format='%4C %Z %?X?%2X&  ? %b %D %-15.15L %s'"
-folder-hook "notmuch://*" "set index_format='%4C %Z %?X?%2X&  ? <notmuch> %D %-15.15L %s'"
+folder-hook .             "set index_format='%4C %Z %?X?%2X&  ? %D %-15.15L %b %s'"
+folder-hook "notmuch://*" "set index_format='%4C %Z %?X?%2X&  ? %D %-15.15L <notmuch> %s'"
 
 # This variable controls the format of the date printed by the “%d” sequence in
 # $index_format.

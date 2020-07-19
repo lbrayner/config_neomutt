@@ -1,0 +1,29 @@
+# basic colors
+
+color normal    default       default
+color indicator brightwhite   black
+color status    brightdefault default
+
+# index
+
+color index green   default "~U" # unread messages
+color index magenta default "~F" # flagged messages
+
+# color index_date         yellow        default
+color index_author  blue        default "!~F"
+color index_flags   brightwhite default "!~F"
+color index_subject yellow      default "!~F"
+
+# color index_date   brightblack white "~T"
+color index         brightblack white "~T" # tagged messages
+color index_author  brightblack white "~T"
+color index_flags   brightblack white "~T"
+color index_subject brightblack white "~T"
+
+# headers
+
+color hdrdefault yellow  default
+color header     magenta default "^(From|To|Cc|Bcc)"
+color header     blue    default "^(Subject|Date)"
+
+# vim:ft=muttrc
