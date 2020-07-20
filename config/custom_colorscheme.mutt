@@ -26,14 +26,14 @@ color index_flags   brightwhite default "!~F"
 color index_subject yellow      default "!~F"
 
 color index         brightmagenta default "~F" # flagged messages
-color index_author  default       default "~F"
+color index_author  magenta       default "~F"
 color index_flags   magenta       default "~F"
 color index_subject magenta       default "~F"
 
 color index         green default "~U" # unread messages
-color index_author  default     default "~U"
-color index_flags   green       default "~U"
-color index_subject green       default "~U"
+color index_author  green default "~U"
+color index_flags   green default "~U"
+color index_subject green default "~U"
 
 color index         brightblack white "~T" # tagged messages
 color index_author  brightblack white "~T"
