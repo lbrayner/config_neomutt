@@ -74,7 +74,7 @@ then
 fi
 if [[ -n "${DISPLAY}" ]]
 then
-    terminal -- -u ${vim} -R "+setlocal fileencoding=${encoding}" \
+    terminal -d -- ${vim} -R "+setlocal fileencoding=${encoding}" \
         '+setlocal nomodified' \
         '+setlocal filetype=mail' '+setlocal nofoldenable' \
         '+setlocal nomodifiable' '+setlocal buftype=nofile' \
