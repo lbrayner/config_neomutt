@@ -8,12 +8,12 @@ This suggestion has been incorporated into [neomutt](https://github.com/neomutt/
 
 # Regular st (suckless terminal)
 
-![Screenshot](https://user-images.githubusercontent.com/5733531/87884641-031b4000-c9e6-11ea-8729-4900d406141b.png)
+![Screenshot](https://user-images.githubusercontent.com/5733531/89113088-9d49a200-d442-11ea-9057-48a4b1b8b836.png)
 
 # Solarized dark st (suckless terminal)
 
-![Screenshot](https://user-images.githubusercontent.com/5733531/87884539-35786d80-c9e5-11ea-8b4e-c0b0e32f8cde.png)
+![Screenshot](https://user-images.githubusercontent.com/5733531/89113097-b0f50880-d442-11ea-8591-4242acd4375a.png)
 
 # Solarized light st (suckless terminal)
 
-![Screenshot](https://user-images.githubusercontent.com/5733531/87884751-fb0fd000-c9e6-11ea-916c-be7043e9cc00.png)
+![Screenshot](https://user-images.githubusercontent.com/5733531/89113083-9753c100-d442-11ea-813a-83f743aad039.png)
