@@ -18,6 +18,19 @@ set status_format="-%r-NeoMutt: %D %?V?{%.35V}? [Msgs:%?M?%M/?%m%?n? \
 New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? \
 Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---"
 
+# Controls whether mutt tries to set the terminal status line and icon name.
+# Most terminal emulators emulate the status line in the window title.
+set ts_enabled=yes
+
+# ts_icon_format: Controls the format of the icon title, as long as
+# “$ts_enabled” is set. This string is identical in formatting to the one used
+# by “$status_format”.
+
+# ts_status_format: Controls the format of the terminal status line (or window
+# title), provided that “$ts_enabled” has been set. This string is identical in
+# formatting to the one used by “$status_format”.
+set ts_icon_format=$ts_status_format
+
 # A hook is a concept found in many other programs which allows you to execute
 # arbitrary commands before performing some operation. For example, you may
 # wish to tailor your configuration based upon which mailbox you are reading,
