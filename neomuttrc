@@ -22,13 +22,14 @@ Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---"
 # Most terminal emulators emulate the status line in the window title.
 set ts_enabled=yes
 
-# ts_icon_format: Controls the format of the icon title, as long as
-# “$ts_enabled” is set. This string is identical in formatting to the one used
-# by “$status_format”.
-
 # ts_status_format: Controls the format of the terminal status line (or window
 # title), provided that “$ts_enabled” has been set. This string is identical in
 # formatting to the one used by “$status_format”.
+set ts_status_format="NeoMutt: %D with %?m?%m messages&no messages?%?n? [%n NEW]?"
+
+# ts_icon_format: Controls the format of the icon title, as long as
+# “$ts_enabled” is set. This string is identical in formatting to the one used
+# by “$status_format”.
 set ts_icon_format=$ts_status_format
 
 # A hook is a concept found in many other programs which allows you to execute
