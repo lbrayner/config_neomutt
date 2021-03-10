@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+template="mail"
+
+if [[ -n "${MUTT_CACHE}" ]] && [[ -f "${MUTT_CACHE}/pandoc_mail_template" ]]
+then
+    template="$(cat "${MUTT_CACHE}"/pandoc_mail_template)"
+fi
+
+# Cited text with line breaks
+# Quit on finding signature
+
+<&0 sed -n -E \
+    -e '/On .* wrote:$/,/^$/ s/.+/&  /p' -e t \
+    -e '/^-- $/q' \
+    -e p \
+    | pandoc --quiet --template=${template} \
+    -f org -t html
