@@ -1,6 +1,0 @@
-#!/bin/sh
-
-# limit patterns have to be 1023 characters wide max
-
-sed -n -E -e 's/id://g' -e '1s/.*/=i "&"/p' -e '2,$s/.*/| =i "&"/p' /dev/stdin |\
-    tr '\r\n' ' ' | cut -c -1023 | sed 's/\(.*=i "[^"]\+"\).*/\1/'
