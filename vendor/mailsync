@@ -27,7 +27,7 @@ notify() {
 if pgrep offlineimap
 then
     printf '\nKilling supposedly stuck offlineimap instance(s).\n\n'
-    pkill -9 offlineimap
+    pkill -9 -f "offlineimap -o"
     sleep 1
 fi
 # Run offlineimap. You can feed this script different settings.
